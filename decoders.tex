@@ -1,0 +1,45 @@
+
+
+\section{Decoders}
+\noindent
+\textbf{Issue:} Our VGAE models are trained using a cross-entropy loss over the predictions
+\begin{equation}
+    \hat{P}(A[i,j] = 1 | \Theta),
+\end{equation}
+where $\Theta$ is our encoder/decoder model parameters. However, many of our decoders are not giving proper probabilities, 
+for example taking a sigmoid of distances between node latents
+\begin{equation}
+    \hat{P}(A[i,j] = 1 | \Theta) = \sigma(-d(\mb{z}_i, \mb{z}_j))
+\end{equation}
+is improper since $\sigma(-d(\mb{z}_i, \mb{z}_j)) \in [0,0.5]$ and is not surjective onto $[0,1]$. (The root cause is the fact that $d(\mb{z}_i, \mb{z}_j) \geq 0$.)
+{\bf Note that this is an issue at both training and inference, as our cross-entropy loss during training will also struggle to learn when using improper probability inputs.}
+
+
+Note that the dot-product decoder does not have this problem because 
+\begin{equation}
+  \hat{P}(A[i,j] = 1 | \Theta) = \sigma(\mb{z}_i^\top \mb{z}_j) 
+\end{equation}
+is surjective on $[0,1]$ since $\mb{z}_i^\top \mb{z}_j\in [-\inf, \inf]$.
+{\bf However, we want to use a distance-based decoder, because that allows us to leverage the structure of the hyperbolic space in the most proper/elegant/intuitive way.}\\
+
+\noindent
+\textbf{Direct Solution} We use a well-defined softmax. The most direct solution to give proper probabilties for edges within a single graph based on distances would be:
+\begin{equation}
+    \hat{P}(A[i,j] = 1 | \Theta) = \sigma(p)\times\frac{\exp(d(\mb{z}_i, \mb{z}_j))}{\sum_{k=1}^{n}\sum_{l=l+1}^{n}\exp(d(\mb{z}_k, \mb{z}_l))} 
+\end{equation}
+where $p \in \mathbb{R}$ is a learnable parameter that controls the density of the graph.  
+Note that here we are normalizing over all possible edges in the graph. 
+Thus, a pair of nodes that are close together {\em relative to the average pair of nodes in the graph}, will tend to be connected. 
+The $\sigma(p)$ term controls the density of the graph. 
+{\bf This equation would be perfect if we were only learning a model over a single graph... However, if we are training over a distribution of multiple graphs that might have different numbers of nodes then the probabilities will all be lower in larger graphs, which is no good.}
+In particular, if all the nodes are equidistant then we will get lower probabilities for a graph with more nodes...
+A natural way to fix this is as follows:
+\begin{equation}
+    \hat{P}^{\textrm{fixed}}(A[i,j] = 1 | \Theta) = \sigma(p)\times\frac{\exp(d(\mb{z}_i, \mb{z}_j))}{\sum_{k=1}^{n}\sum_{l=l+1}^{n}\exp(d(\mb{z}_k, \mb{z}_l))} \times \left(\max_{i',j'}\left\{\frac{\exp(d(\mb{z}_{i'}, \mb{z}_{j'}))}{\sum_{k=1}^{n}\sum_{l=l+1}^{n}\exp(d(\mb{z}_k, \mb{z}_l))}\right\}\right)^{-1}
+\end{equation}
+That is, we normalize the softmax score by the inverse of the maximum softmax value for a graph.
+This ensures that the decoder simplifies to the Erdos-Renyi model (with edge probability $\sigma(p)$) when all pairwise distances are equal (in expectation), regardless of how many nodes are in the graph.
+Note that the $\sigma(p)$ term is important since it is what allows the model to learn the density of the graph. 
+
+
+

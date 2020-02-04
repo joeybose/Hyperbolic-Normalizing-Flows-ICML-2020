@@ -1,0 +1,43 @@
+\section{Related Work}
+\xhdr{Hyperbolic Geometry in Machine Learning:}
+The intersection of hyperbolic geometry and machine learning has recently risen to prominence, \cite{dhingra2018embedding,tay2018hyperbolic,law2019lorentzian,khrulkov2019hyperbolic} as it provides an effective framework to continuously embed the discrete structured data such as complex networks~\cite{krioukov2010hyperbolic}. Early prior work proposed to embed hierarchical data into the Poincar\'e disk model \cite{nickel2017poincare,chamberlain2017neural}.
+The equivalent Lorentz model was later shown to have better numerical stability properties during optimization \cite{nickel2018learning}. 
+To provably bound the numerical error of hyperbolic embeddings in the Lorentz model \cite{yu2019numerically} propose another model of hyperbolic geometry using integer-based tiling. 
+Hyperbolic counterparts to conventional deep learning machinery on Euclidean spaces ---i.e. linear layers, pointwise non-linearity, and attention were also proposed and allowed the construction of hyperbolic neural networks (HNNs) \cite{gulcehre2018hyperbolic,ganea2018hyperbolic} and extensions to graph data \cite{liu2019graph,chami2019hyperbolic}.
+
+Latent variable models on hyperbolic latent space have also been investigated in the context of variational auto-encoders with notable differences being in the generalizations of the normal distribution used for the approximate posterior \cite{nagano2019wrapped,mathieu2019continuous}. As an extension, \cite{skopek2019mixed} consider a more general case where the latent space of a VAE is a product of Riemannian manifolds with constant and learnable curvatures. In contrast, our work learns a flexible approximate posterior using a novel normalizing flow architecture designed to use the rich geometry of hyperbolic spaces.
+
+\xhdr{Normalizing Flows:} 
+Normalizing flows (NFs)~\cite{rezende2015variational,dinh2016density} are a class of probabilistic models which use invertible transformations to map samples from a simple base distribution to samples from a more complex learned distribution. The new density can then be efficiently computed via the change of variable formula making normalizing flows powerful tools for variational inference and generative modeling. While there many classes of normalizing flows, see survey \cite{papamakarios2019normalizing,kobyzev2019normalizing}, our work largely follows flows designed with partial ordered dependency as found in coupling transformations \cite{dinh2016density}. 
+
+Recently, normalizing flows have been extended to Riemannian manifolds such as spherical spaces in \cite{gemici2016normalizing}.\cut{The idea is to (1) map a probability distribution on the Riemannian manifold to its homeomorphic Euclidean space, (2) apply the normalizing flow in this Euclidean space, and (3) map the distribution back to the manifold.} In a different line of work authors in~\cite{wang-wang-2019-riemannian} construct a planar flow  \cite{rezende2015variational} in the variational inference on Riemannian manifolds parameterized by the inverse multiquadratics kernel function. Relying on RealNVP style coupling and GNNs \cite{liu2019graph} develops graph normalizing flows (GNFs) for generating discrete data like graphs.
+
+\cut{Hyperbolic geometry becomes increasingly popular in machine learning~\cite{dhingra2018embedding,tay2018hyperbolic,law2019lorentzian,khrulkov2019hyperbolic} due to the fact it provides an effective framework to continuously embed the discrete structured data such as complex networks~\cite{krioukov2010hyperbolic}.
+Authors in~\cite{nickel2017poincare,chamberlain2017neural} proposed to embed hierarchical data into the Poincar\'e disk model.
+The equivalent Lorentz model was later investigated in~\cite{nickel2018learning} and shown to have better numerical stability in optimization.
+To address the issue of numerical error of hyperbolic embedding, authors in~\cite{yu2019numerically} proposes an integer-based tilling represnetation which has provably bounded numerical error.
+Attention mechanism was generalized to the hyperbolic space in~\cite{gulcehre2018hyperbolic} by leveraging the pseudo-polar coordinate mapping and the Einstein midpoint.
+Relying on the theory of gyrovector spaces and generalized Möbius transformations, authors in~\cite{ganea2018hyperbolic} proposed the hyperbolic-space counterparts of basic Euclidean operations (\eg linear mapping and point-wise nonlinearity) and constructed the hyperbolic neural networks (HNNs).
+Following this work, hyperbolic graph neural networks (HGNNs)~\cite{liu2019hyperbolic} and hyperbolic graph convolutional networks (HGCN)~\cite{chami2019hyperbolic} were recently proposed.
+Although both of them perform layer-wise transformations in the tangent space, HGCNs facilitate learnable curvature per layer and are arguably more flexible.
+
+
+Latent variable models with hyperbolic latent space have also been investigated.
+In particular, several generalizations of the normal distribution to the hyperbolic space are proposed in the context of variational auto-encoders (VAEs)~\cite{mathieu2019continuous,nagano2019wrapped}.
+Authors in~\cite{skopek2019mixed} considered a more general case where the latent space of VAE is a product of Riemannian manifolds with constant and learnable curvatures.
+
+
+\xhdr{Normalizing Flows:} 
+Normalizing flows (NFs)~\cite{rezende2015variational,dinh2016density} are a class of probabilistic models which use invertible transformations to map a sample from a simple base distribution to another sample from a more complex learned distribution \cite{papamakarios2019normalizing,kobyzev2019normalizing}.
+They could be roughly divided into two categories based on whether the flow is volume-preserving or not.
+The new density could be efficiently computed based on the change of variable formula.
+Our work largely follows the non-volumne preserving flows, a.k.a, RealNVP~\cite{dinh2016density}, which constructs the invertible transformation by splitting the dimension of the random variable.
+NFs are shown to be very useful for variational inference and generative modeling.
+
+Normalizing flow has been extended to Riemannian manifolds (more precisely sphere) in \cite{gemici2016normalizing}. 
+The idea is to (1) map a probability distribution on the Riemannian manifold to its homeomorphic Euclidean space, (2) apply the normalizing flow in this Euclidean space, and (3) map the distribution back to the Riemannian manifold.  
+On a Riemannian manifold parameterized by the inverse multiquadratics kernel function, authors in~\cite{wang-wang-2019-riemannian} construct a planar flow and show that it is useful as a variational posterior distribution in the framework of VAE.
+Relying on RealNVP and graph neural networks (GNNs), authors in \cite{liu2019graph} develop the graph normalizing flows for generating discrete data like graphs.
+}
+
+

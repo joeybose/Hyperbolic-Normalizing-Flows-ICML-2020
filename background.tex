@@ -1,0 +1,131 @@
+\section{Background on Hyperbolic Geometry}
+We briefly review the Lorentz model of hyperbolic geometry. We are not
+assuming background in Riemannian geometry (Appendix \ref{riemannian_geometry_appendix}); one can understand concepts
+like curvature intuitively without needing a long digression into
+Riemannian geometry. A very useful source is \cite{Ratcliffe94}. Henceforth, for notational clarity, we use boldface font to denote points on the manifold.
+\cut{
+\prakash{I have edited this section to eliminate too much appeal to general Riemannian geometry.  For example, I have replaced ``sectional curvature'' with ``curvature''.  Of course, ``sectional curvature'' is correct but in these spaces of constant curvature we can just say curvature.} \joey{I really like the edits made here! I would only change the tense/tone of the writing such that it matches section 1+3.}}
+\subsection{Lorentz Model of Hyperbolic Geometry}
+Hyperbolic space is a manifold with constant negative curvature.  Historically it arose as an example of a geometry that is internally consistent but breaks Euclid's parallel postulate.  An $n-$dimensional hyperbolic space, $\mathbb{H}^n$, is the unique, complete, simply-connected $n-$dimensional Riemannian manifold of constant negative curvature.  There are multiple models of Hyperbolic space but for our purposes the Lorentz model is the most convenient, since it is equipped with relatively simple explicit formulas and useful numerical stability properties \cite{nickel2018learning}.
+
+The Lorentz model embeds hyperbolic space $\mathbb{H}^n$ within the $n+1-$dimensional Minkowski space, defined as the manifold $\mathbb{R}^{n+1}$ equipped with the following inner product:
+\begin{equation}\label{eq:lorentzmetric}
+    \langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}} := -x_0y_0 + x_1y_1 + \dots + x_ny_n,
+\end{equation}
+which has the type 
+$\langle \cdot, \cdot \rangle_{\mathcal{L}}: \mathbb{R}^{n+1} \times \mathbb{R}^{n+1} \to \mathbb{R}$.
+%It is indefinite, which may come as a shock to those used to the traditional definition of inner product from linear algebra, but this is a well-defined notion extensively used in special relativity for over a century.  
+It is common to denote this space as $\mathbb{R}^{1,n}$ to emphasize the distinct role of the zeroth coordinate.
+In the Lorentz model, we model hyperbolic space as the (upper part of) the hyperboloid embedded in Minkowski space.  The $n-$Hyperbolic space with constant negative curvature $K$ with origin $\textbf{o} = (1/K, 0, \dots, 0)$, is a Riemannian manifold $(\mathbb{H}^{n}_K,g_{\mb{x}})$ where
+\begin{equation*}
+    \mathbb{H}^{n}_K := \{x \in \mathbb{R}^{n+1}:  \langle \textbf{x}, \textbf{x} \rangle_{\mathcal{L}} = 1/K, \ x_0 > 0, \ K<0 \},
+\end{equation*}
+It is a remarkable fact that though the Lorentzian metric (Equation \ref{eq:lorentzmetric}) is indefinite,
+the induced Riemannian metric $g_{\mb{x}}$ on the unit hyperboloid is positive definite \cite{Ratcliffe94}.
+%If we define $d_{\mathbb{H}^{n}_K} = $
+%Indeed, if we define $d_{\mathbb{H}^{n}_K}(\mathbf{x},\mathbf{y})$ by $\langle \textbf{x},\textbf{y} \rangle_{\mathcal{L}}  = ||\bx||||\by||\cosh d_{\mathbb{H}^{n}_K}(\bx,\by)$ then $d_{\mathbb{H}^{n}_K}$ is a metric on the hyperbolic space \cite{Ratcliffe94}.
+%; see~\cite{Ratcliffe94} page 64.
+%Describing hyperbolic space in this way is convenient as one can use the coordinates in the embedding space to write explicit formulas for derivatives and other operations.  
+%When convenient we shall also use the generalized radius $R = 1/\sqrt{-K}$ in place of the curvature.
+\cut{
+\begin{equation}
+    g_x := \begin{bmatrix}
+            -1 & &  &\\
+            & 1 & & \\
+            & & \ddots & \\
+            & & & 1
+            \end{bmatrix}.
+\end{equation}
+}
+Equipped with this, the induced distance between two points $(\mb{x},\mb{y})$ in $\mathbb{H}^{n}_K$ is given by
+\begin{equation}
+    d(\textbf{x},\textbf{y})_{\mathcal{L}} := \frac{1}{\sqrt{-K}}\arccosh(-K \langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}}).
+\end{equation}
+%This is obtained by inverting the relation for $\eta$ described above.
+
+
+The tangent space to the hyperboloid at
+the point $\textbf{p}$ can also be described as an embedded subspace of
+$\mathbb{R}^{1,n}$.  It is given by the set of points satisfying the
+orthogonality relation with respect to the Minkowski inner product,
+\begin{equation}
+    \mathcal{T}_{\textbf{p}}\mathbb{H}^n_K := \{u: \langle u, \textbf{p} \rangle_{\mathcal{L}} = 0 \}.
+\end{equation}
+Of special interest are vectors in the tangent space at the origin of $\mathbb{H}^{n}_K$ whose norm under the Minkowski inner product equivalent to the conventional Euclidean norm. That is $v \in \mathcal{T}_{\textbf{o}}\mathbb{H}^{n}_K$ is a vector such that $v_0 = 0$ and $||\textbf{v}||_{\mathcal{L}} := \sqrt{\langle \textbf{v}, \textbf{v}
+\rangle_{\mathcal{L}}} = ||\textbf{v}||_2$.  Thus \emph{at the origin} the
+partial derivatives with respect to the ambient coordinates defines the
+covariant derivative.  
+Of course, this will not be true at other points but
+we are going to use derivatives at the origin only for our transformations.
+\cut{\prakash{Joey, please make sure this last statement is true.}}
+
+\xhdr{Projections}
+Starting from the extrinsic view where $\mathbb{H}^{n}_K \subset \mathbb{R}^{n+1}$ we may project any vector $x \in \mathbb{R}^{n+1}$ on to the hyperboloid using the shortest Euclidean distance:
+\begin{equation}
+    \textnormal{proj}_{\mathbb{H}^{n}_K(x)} = \frac{x}{\sqrt{-K}||x||_{\mathcal{L}}}
+\end{equation}
+Furthermore, by definition a point on the hyperboloid satisfies $\langle \textbf{x}, \textbf{x} \rangle_{\mathcal{L}} = 1/K$ and thus when provided with $n$ coordinates $\hat{x} = (x_2, \dots, x_{n+1})$ we can always determine the missing coordinate to get a point on $\mathbb{H}^n_K$,
+\begin{equation}
+    \label{eqn:hyperboloid_projection}
+    x_1 = \sqrt{||\hat{x}||^2_2 + \frac{1}{K}}
+\end{equation}
+We later exploit this fact in \ref{wrapped_hyerboloid_coupling_section}, to determine points on the manifold that our normalizing flow should tranport to.
+
+
+\xhdr{Exponential Map}
+The exponential map takes a vector, $v$, in the tangent space of a point $\textbf{x} \in \mathbb{H}^{n}_K$ to a point on the manifold---i.e., $\textbf{y} = \textnormal{exp}^K_\textbf{x}(v): \mathcal{T}_{\textbf{x}} \mathbb{H}^{n}_K \to \mathbb{H}^{n}_K$ by moving along the unique unit speed geodesic satisfying $\gamma(0) = \textbf{x}$ with velocity $\gamma '(0)= v$. The closed form expression for the Lorentz model is then given by
+\begin{equation*}
+    \textbf{y} = \textnormal{exp}_{\textbf{x}} (v) = \cosh \Big(\frac{||v||_{\mathcal{L}}}{R} \Big)\textbf{x} +  \sinh \Big(\frac{||v||_{\mathcal{L}}}{R} \Big)\frac{Rv}{||{v}||_{\mathcal{L}}},
+\end{equation*}
+where we used the generalized radius $R = 1/\sqrt{-K}$ in place of the curvature.
+
+\xhdr{Logarithmic Map}
+As the inverse of the exponential map, the logarithmic map takes a point, $\textbf{y}$, on the manifold back to the tangent space defined by another point point $\textbf{x}$ also on the manifold. In the Lorentz model this is defined as
+\begin{equation*}
+    \log^K_{\textbf{x}}{\textbf{y}} = \frac{\arccosh(\alpha)}{\sqrt{\alpha^2 - 1}}(\textbf{y} - \alpha \textbf{x}),
+\end{equation*}
+where $\alpha = K\langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}}$.
+
+\xhdr{Parallel Transport}
+The parallel transport for two points $\textbf{x},\textbf{y} \in \mathbb{H}^{n}_K$ is a map that carries the vectors in $v \in \mathcal{T}_{\textbf{x}}\mathbb{H}^{n}_K$ to corresponding vectors at $v' \in \mathcal{T}_{\textbf{y}}\mathbb{H}^{n}_K$ along the geodesic. That is vectors are connected between the two tangent spaces such that the covariant derivative is unchanged. For Riemannian Manifolds we use the Levi-Civita connection. Parallel transport is a map that preserves the metric tensor ---i.e. $\langle \textnormal{PT}^K_{\textbf{x} \to \textbf{y}}(v), \textnormal{PT}^K_{\textbf{x} \to \textbf{y}}(v') \rangle_{\mathcal{L}} = \langle v, v' \rangle_{\mathcal{L}}$and in the Lorentz model is given by
+\begin{align*}
+    \textnormal{PT}^K_{\textbf{x} \to \textbf{y}}(v) & = v - \frac{ \langle \log^K_{\textbf{x}}(\textbf{y}), v \rangle_{\mathcal{L}}}{d(\textbf{x},\textbf{y})_{\mathcal{L}}} (\log^K_{\textbf{x}}(\textbf{y})+ \log^K_{\textbf{y}}(\textbf{x})) \\
+    & = v + \frac{ \langle \textbf{y}, v \rangle_{\mathcal{L}}}{R^2 - \langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}}} (\textbf{x}+ \textbf{y}),
+\end{align*}
+where $\alpha$ is as defined above. Another useful property is that the inverse parallel transport simply carries the vectors back along the geodesic and is simply,
+
+\begin{equation}
+      (\textnormal{PT}^{K}_{\textbf{x} \to \textbf{y}}(v))^{-1} = \textnormal{PT}^K_{\textbf{y} \to \textbf{x}}(v).
+\end{equation}
+
+\subsection{Probability Distributions on Hyperbolic Spaces}
+
+
+\cut{
+Note, however, since all the distributions are defined directly on the manifold, to compute the density with respect to the Lebesgue meaure we must use the pullback of the volume form on the tangent space at the point, $\int p(\textbf{z}) d\mathbb{H}^n_K (\textbf{z}) = \int p(z)\sqrt{|G(\textbf{z})|}d \textbf{z}$. \joey{Prakash should check this}
+}
+
+%\renjie{My version starts here!}
+
+Probability can be defined on Riemannian manifolds which include hyperbolic manifold as special cases, by relating an infitismal volume on the manifold to a corresponding volume in a homeomorphic Euclidean space by the conservation of measure.
+In particular, given the Riemannian manifold $\mathcal{M}(\textbf{z})$ and its metric $g_\mb{z}$, we have $\int p(\textbf{z}) d\mathcal{M} (\textbf{z}) = \int p(\textbf{z})\sqrt{|g_\mb{z}|}d \textbf{z}$, where $d \textbf{z}$ is the Lebesgue measure. We now briefly survey three distinct generalizations to the normal distribution to Riemannian manifolds following ~\cite{mathieu2019continuous,skopek2019mixed}.
+
+\xhdr{Riemannian Normal}
+The first is the Riemannian normal~\cite{said2014new}, which is derived from maximizing the entropy given a mean $\mu$ and a variance $\sigma$.
+Specifically, we have $\mathcal{N}_{\mathcal{M}}(\textbf{z} \vert \mu, \sigma^{2}) = \frac{1}{Z^{R}} \exp \left( - d_{\mathcal{M}}(\mu, \textbf{z})^2 / 2 \sigma^{2} \right)$, where $d_{\mathcal{M}}$ is the Riemannian distance and $Z^{R}$ is the normalization constant\footnote{The analytical form of $Z^{R}$ could be found in \cite{said2014new,mathieu2019continuous}.}.
+
+\xhdr{Restricted Normal}
+One can also restrict sampled points from the normal distribution in the ambient space to the manifold.
+One example would be the Von Mises distribution on the unit circle and its generalized version, \ie, Von Mises-Fisher distribution on the hypersphere~\cite{davidson2018hyperspherical}.
+
+\xhdr{Wrapped Normal}
+Finally, we can define a wrapped normal distribution~\cite{nagano2019wrapped}, which is obtained by (1) sampling a point $\textbf{v}$ from a normal distribution defined in the tangent space of one point $\mu_{0}$ on the manifold; (2) parallel transporting the sample $\textbf{v}$ from the tangent space of $\mu_{0}$ to the tangent space of another point $\mu$ on the manifold to obtain $\textbf{u}$; (3) mapping $\textbf{u}$ from the tangent space to $\textbf{u}$ on the manifold using the exponential map at $\mu$.
+Sampling from such a distribution is straightforward and the probability density can be obtained based on the change of variable formula as below,
+\begin{align}
+    \log p(\textbf{z}) = \log p(\textbf{v}) - (n-1) \log \left(\frac{\sinh{ ( \Vert \textbf{u} \Vert_{\mathcal{L}} ) }}{ \Vert \textbf{u} \Vert_{\mathcal{L}} } \right),
+\end{align}
+where $p(\textbf{z})$ is the wrapped normal distribution in the tangent space of $\mu$ and $p(\textbf{v})$ is the normal distribution in the tangent space of $\mu_{0}$.
+
+
+
+

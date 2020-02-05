@@ -194,14 +194,14 @@ $$
 To evaluate this term, we rely on the following Lemma:
 
 \begin{lemma}
-Let $g : \mc{T}_\mb{o}\mbb{H}^n \rightarrow \mc{T}_\mb{o}\mbb{H}^n$ be a function from the tangent space at the origin to the tangent space at the origin defined as:
+Let $h : \mc{T}_\mb{o}\mbb{H}^n \rightarrow \mc{T}_\mb{o}\mbb{H}^n$ be a function from the tangent space at the origin to the tangent space at the origin defined as:
 \begin{equation}\label{eq:g}
-g(\tildex) = \mb{z} = b \odot \tilde{
+h(\tildex) = \mb{z} = b \odot \tilde{
     \mb{x}} + \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big).
 \end{equation}
-Now, define a function $g^* : \mc{T}_\mb{o}\mbb{H}^{n-d} \rightarrow \mc{T}_\mb{o}\mbb{H}^{n-d}$ which acts on the subspace of $\mc{T}_\mb{o}\mbb{H}^{n-d}$ corresponding to the standard basis elements $\mb{e}_{d+1}, ..., \mb{e}_n$ as
+Now, define a function $h^* : \mc{T}_\mb{o}\mbb{H}^{n-d} \rightarrow \mc{T}_\mb{o}\mbb{H}^{n-d}$ which acts on the subspace of $\mc{T}_\mb{o}\mbb{H}^{n-d}$ corresponding to the standard basis elements $\mb{e}_{d+1}, ..., \mb{e}_n$ as
 \begin{equation}\label{eq:gstar}
-g^*(\tildex_{d+1:n}) =   \log_{\mb{o}_{d+1:n}}\Big( \textnormal{exp}_{\mb{t}_{d+1:n}}\big(\textnormal{PT}_{\mb{o}_{d+1:n} \to \mb{t}_{d+1:n}}( \tilde{\mb{x}}_{d+1:n} \odot \sigma(\mb{s}))\big)\Big),
+h^*(\tildex_{d+1:n}) =   \log_{\mb{o}_{d+1:n}}\Big( \textnormal{exp}_{\mb{t}_{d+1:n}}\big(\textnormal{PT}_{\mb{o}_{d+1:n} \to \mb{t}_{d+1:n}}( \tilde{\mb{x}}_{d+1:n} \odot \sigma(\mb{s}))\big)\Big),
 \end{equation}
 where $\tildex_{d+1:n}$ denotes the portion of the vector $\tildex$ corresponding to the standard basis elements $\mb{e}_{d+1}, ..., \mb{e}_n$ and $\mb{s}$ and $\mb{t}$ are constants (which depend on $\tildex_{2:d}$).
 In Equation \eqref{eq:gstar}, we use $\mb{o}_{d+1:n} \in \mbb{H}^{n-d}$ to denote the vector corresponding to only the dimensions $d+1, ..., n$ and similarily for $\mb{t}_{d+1:n}$.
@@ -213,9 +213,9 @@ Then we have that
 \begin{proof}
 First note that by design we have that 
 \begin{equation}
-    [0,0..,0] \oplus g^*(\tildex_{d+1:n}) = \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big),
+    [0,0..,0] \oplus h^*(\tildex_{d+1:n}) = \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big),
 \end{equation}
-i.e., the output of $g^*$ is equal to right hand side of Equation \eqref{eq:g} after prepending/concatenating 0s to the output of $g^*$. 
+i.e., the output of $h^*$ is equal to right hand side of Equation \eqref{eq:g} after prepending/concatenating 0s to the output of $h^*$. 
 
 Now, we can evaluate 
 $$
@@ -225,11 +225,11 @@ by examining the directional derivative with respect to a set of basis elements 
 Now, given that this is the tangent space at the origin, we know that the standard (i.e., Euclidean) basis elements $\mb{e}_2, ..., \mb{e}_n$ form a valid basis for this subspace, since they are orthogonal under the Lorentz normal and orthogonal to the origin itself. 
 Now, we can note first that
 \begin{equation}
-    D_{\mb{e}_i}g(\tildex) = \mb{e}_i, \forall i=2...d.
+    D_{\mb{e}_i}h(\tildex) = \mb{e}_i, \forall i=2...d.
 \end{equation}
 In other words, the directional derivative for the first $d$ basis elements is the simply the basis elements themselves. This can be verified by taking the definition of the directional derivative:
 \begin{equation}
-     D_{\mb{e}_i}g(\tildex)  = \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}g(\tildex + \epsilon\mb{e}_i)
+     D_{\mb{e}_i}h(\tildex)  = \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tildex + \epsilon\mb{e}_i)
 \end{equation}
 and noting that the 
 $$
@@ -238,11 +238,11 @@ $$
 term must equal zero since $(1-b)\odot \mb{e}_i = \mb{0}, \forall i = 2, ..., d$ by design. 
 Now, for the basis elements $\mb{e}_i$ with $i>d$ we have that
 \begin{equation}
-     D_{\mb{e}_i}g(\tildex) \perp \mb{e}_j, \forall i=d+1, ..., n, j=2...,d.
+     D_{\mb{e}_i}h(\tildex) \perp \mb{e}_j, \forall i=d+1, ..., n, j=2...,d.
 \end{equation}
 This holds because 
 \begin{align}
-D_{\mb{e}_i}g(\tildex)  &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}g(\tildex + \epsilon\mb{e}_i) \\
+D_{\mb{e}_i}h(\tildex)  &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tildex + \epsilon\mb{e}_i) \\
  &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}    \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big) 
 \end{align}
 since $b \odot \mb{e}_i = \mb{0}, \forall i = d+1, ..., n$ by design and because
@@ -250,29 +250,28 @@ since $b \odot \mb{e}_i = \mb{0}, \forall i = d+1, ..., n$ by design and because
    \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big) \perp \mb{e}_j, \forall \tildex \in \mc{T}_\mb{o}\mbb{H}^n, \forall  j=2...,d.
 \end{equation}
 due to the $(1-b)$ term inside the parallel transport and by our design of the function $t$. 
-Together, these facts give that the Jacobian matrix for $g$ (under the basis $\mb{e}_2, ..., \mb{e}_n$) has the following block form:
+Together, these facts give that the Jacobian matrix for $h$ (under the basis $\mb{e}_2, ..., \mb{e}_n$) has the following block form:
 \begin{equation}
    \left(\frac{\partial \mb{z}}{\partial \tildex}\right) = \left[\begin{BMAT}{cc}{cc}
     \mb{I} & \mb{0} \\
-    \mb{A} & \frac{\partial g^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}
+    \mb{A} & \frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}
     \end{BMAT}\right]
 \end{equation}
 and by the properties of determinants of block matrices we have that
 \begin{equation}
-    \left|\textnormal{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial g^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|
+    \left|\textnormal{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|
 \end{equation}
 \end{proof}
 Given Lemma 1, all that remains is to evaluate 
 \begin{equation}
-    \left|\textnormal{det}\left(\frac{\partial g^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|.
+    \left|\textnormal{det}\left(\frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|.
 \end{equation}
 This can again be done by the chain rule, where we use Facts 2-4 to compute the determinant for exponential map, logarithmic map, and parallel transport.
 Finally, the Jacobian determinant for the term
 \begin{equation}
     \tildex \odot \sigma(s(b \odot \tildex)))
 \end{equation}
-can easily be computed as $\prod_{i=d+1}^n\sigma(s(b \odot \tilde{x}))_i$ since the standard Euclidean basis is a basis for the tangent space at the origin.
-(These full derivations will be added at a later time.)
+can easily be computed as $\prod_{i=d+1}^n\sigma(s(b \odot \tilde{x}))_i$ since the standard Euclidean basis is a basis for the tangent space at the origin as shown in Appendix \ref{Euclidean_RealNVP_appendix}.
 \end{proof}
 
 \cut{\input{decoders.tex}}

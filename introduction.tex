@@ -16,9 +16,9 @@ There have been numerous advances in normalizing flow construction in Euclidean 
     \vspace{-10pt}
     \includegraphics[width=\linewidth]{explanatory_fig.pdf}
     \vspace{-10pt}
-    \caption{The shortest path between a given pair of node embeddings in Euclidean space $\mathbb{R}^2$ and hyperbolic space as modelled by the hyperboloid $\mathbb{H}^2_K$ and Poincar\'e $\mathbb{D}^2_K$ disc. \ariella{Explain figure in a few sentences.}}
+    \caption{The shortest path between a given pair of node embeddings in $\mathbb{R}^2$ and hyperbolic space as modelled by $\mathbb{H}^2_K$ and $\mathbb{D}^2_K$.}
     \vspace{-10pt}
-    \label{fig:my_label}
+    \label{fig:explanatory_fig_1}
 \end{figure}
 
 However, one key limitation of the current normalizing flows is that they are restricted to the Euclidean space, and as a result, these approaches are ill-equipped to model data with an underlying hierarchical structure. %and fail to incorporate structural inductive biases.
@@ -51,7 +51,7 @@ Prior works have considered learning models with hyperbolic parameters  \cite{li
 %using stochastic variational inference that better approximate true posteriors for hierarchical data?
 
 We appeal to the geometry of hyperbolic spaces and construct novel normalizing flows in the Lorentz model of hyperbolic geometry. 
-To define our normalizing flow we introduce a new form of coupling, {\em Wrapped Hyperbolic Coupling}, that defines a flexible and invertible transformation in hyperbolic spaces capable of transforming sampled points across the hyperbolic space. 
+To define our normalizing flow we introduce two new forms of coupling, {\em Tangent Coupling} and {\em Wrapped Hyperbolic Coupling}, that define flexible and invertible transformations in hyperbolic spaces capable of transforming sampled points across the hyperbolic space. 
 We further derive the change of volume associated with this transformation and show that it can be computed efficiently with $\mathcal{O}(n)$ cost, where $n$ is the dimension of the hyperbolic space.
 We empirically validate our proposed normalizing flow on structured density estimation, reconstruction and generation tasks on hierarchical data. \cut{We find that using Wrapped Hyperbolic flows allows for an \red{\%XX} an aggregate absolute improvement over Euclidean flows.}
 

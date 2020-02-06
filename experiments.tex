@@ -1,12 +1,15 @@
 \section{Experiments}
-We evaluate our $\mathcal{T}C$-flow and $\mathcal{W}\mathbb{H}C$-flow in three settings. All of our model details, including hyperparameters and architectures can be found in Appendix \ref{model_arch_and_hyperparams}.
+We evaluate our $\mathcal{T}C$-flow and $\mathcal{W}\mathbb{H}C$-flow on three tasks, \ie, structured density estimation, graph reconstruction, and graph generation. 
+Model details including hyperparameters and architectures can be found in Appendix \ref{model_arch_and_hyperparams}.
 
 \xhdr{Setup and Baselines}
-Throughout our experiments we rely on three main baselines, which we use to compare against normalizing flows constructed using $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ layers. In Euclidean space we use Gaussian latent variables and affine coupling flows \cite{dinh2016density}, denoted $\mathcal{N}$ and $\mathcal{N}C$, respectively. As we operate in the Lorentz model we further define Wrapped Gaussians latent variables, $\mathbb{H}$, in this space as an appropriate baseline \cite{nagano2019wrapped}. Due to the fact that all model parameters are defined on tangent spaces they are easily optimized using conventional Euclidean space optimizers like Adam \cite{kingma2014adam}, which we use for all models. Similar to prior work we also consider the curvature $K$ as a learnable parameter with a warmup of $10$ epochs that progressively increasing curvature \cite{skopek2019mixed}.
+Throughout our experiments we rely on three main baselines, which we use to compare against normalizing flows constructed using $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ layers. In Euclidean space we use Gaussian latent variables and affine coupling flows \cite{dinh2016density}, denoted $\mathcal{N}$ and $\mathcal{N}C$, respectively. As we operate in the Lorentz model we further define Wrapped Gaussians latent variables, $\mathbb{H}$, in this space as an appropriate baseline \cite{nagano2019wrapped}. Since all model parameters are defined on tangent spaces, we use conventional optimizers like Adam \cite{kingma2014adam} for all models. 
+Following previous work, we also consider the curvature $K$ as a learnable parameter with a warmup of $10$ epochs that progressively increasing curvature \cite{skopek2019mixed}.
+\renjie{Increasing curvature or increase learning rate of curvature?}
 
 
 \subsection{Structured Density Estimation}
-We first consider structured density estimation in a canonical VAE setting, where we seek to learn rich approximate posteriors using normalizing flows and evaluate the marginal log-likelihood of test data. Following recent work on hyperbolic VAEs, we evaluate our normalizing flow on a branching diffusion process (BDP) \cite{mathieu2019continuous} and dynamically binarized MNIST \cite{skopek2019mixed}. 
+We first consider structured density estimation in a canonical VAE setting, where we seek to learn rich approximated posteriors using normalizing flows and evaluate the marginal log-likelihood of test data. Following recent work on hyperbolic VAEs, we evaluate our normalizing flow on a branching diffusion process (BDP) \cite{mathieu2019continuous} and dynamically binarized MNIST \cite{skopek2019mixed}. 
 
 Our results are shown in Tables \ref{bdp_table} and \ref{mnist_table}.
 On both datasets we observe that our hyperbolic flows provide significant improvement over the baselines when a small latent dimensionality is used.
@@ -15,6 +18,7 @@ For example, even a two-dimensional hyperbolic space can perfectly embed a tree 
 However, as we increase the latent dimension, the Euclidean approaches can compensate for this intrinsic geometric limitation.  
 \cut{
 and we observe significant gains on both datasets when the latent dimension is small.\cut{In particular, $\mathcal{W}\mathbb{H}C$ performs the best with 2 dimensional latents with a relative improvement of \red{\%XX} over $\mathcal{N}C$ normalizing flows.} We reconcile this result by recalling that even in two dimensions hyperbolic spaces have more room to embed hierarchies. As we increase the latent dimension however we see that Euclidean based approaches outperform our proposed models which is line with similar observation in prior work \cite{nickel2017poincare}.}
+
 \begin{table}[ht]
 \label{bdp_table}
 \begin{small}
@@ -181,7 +185,13 @@ We follow the two stage training procedure outlined in Graph Normalizing Flows \
 \end{figure*}
 
 To evaluate the various approaches, we construct $100$ training graphs for each dataset to train our model and then evaluate the quality of the generated graphs. 
-Figure 
+Figure \ref{fig:graph_generation_pic} shows representative samples learned by the various approaches.
+We can see that the hyperbolic normalizing flows learn to generate tree-like graphs and also match the specific properties of the lobster graph distribution, whereas the Euclidean flow model tends to generate densely connected graphs with many cycles (or else disconnected graphs). 
+To quantify these intuitions, Table \ref{tab:randtrees} contains statistics on how often the different models generate valid trees (denoted by ``accuracy''), as well as the average number of triangles and the average global clustering coefficients for the generated graphs. 
+Since the target data is random trees, a perfect model would achieve 100\% accuracy, with no triangles, and a global clustering of 0 for all graphs. 
+We see that the hyperbolic models generate valid trees more often, and they generate graphs with fewer triangles and lower clustering on average.
+Finally, to evaluate how well the models match the specific properties of the lobster graphs, we follow \cite{liao2019efficient} and report the MMD distance between the generate graphs and a test set for various graph statistics (Figure \ref{fig:lobster_graph_gen}).
+Again, we see that the hyperbolic approaches significantly outperform the Euclidean normalizing flow. 
 \cut{
 Our evaluation setup closely mirrors that of \cite{liao2019efficient} in that we construct $100$ training graphs with minimum and maximum number of nodes of $20$ and $100$ respectively, and calculate mean maximum discrepancy between distributions of graph statistics for generated and ground truth graphs. In table \ref{graph_gen_table} we present quantitative results for both datasets while Fig. \ref{fig:graph_generation_pic} shows selected generated samples.\cut{and find that both $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ achieve lower MMD scores on all metrics aside from clustering coefficient on Lobster graphs but achieves higher MMD scores on random trees.} As shown in Fig. \ref{fig:graph_generation_pic} generated samples using $\mathcal{N}C$ for the random trees dataset are simply shallow trees with only a handful of nodes which trivially have low MMD scores but do not respect the structure in the data. For lobster graphs, $\mathcal{N}C$ resembles closer to a fully connected graph and is unable to distinguish the hierarchy in the data. These empiricial observations are corroborated in the MMD metrics where we find that both $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ achieve lower MMD scorest. Critically, a significantly higher proportion of generated samples are actually lobster graphs, while none of the samples generated by $\mathcal{N}C$ respect this hierarchical structure.} \cut{Critically, samples generated by the different normalizing flow models demonstrate that flows on hyperbolic spaces are better able to capture the hierarchical structure of data with deeper hierarchies. Critically, a significantly higher proportion of generated samples are actually lobster graphs, while none of the samples generated by $\mathcal{N}C$ respect this hierarchical structure. Fig. \ref{fig:graph_generation_pic} shows selected s}
 \cut{
@@ -214,7 +224,7 @@ Our evaluation setup closely mirrors that of \cite{liao2019efficient} in that we
 \begin{center}
 \begin{tabular}{llll}
     \toprule
-    Model   & Accuracy & Avg. Tri. & Avg. Trans.\\
+    Model   & Accuracy & Avg. Clust. & Avg. Trans.\\
     \midrule
     $\mathcal{N}C$ & $56.6_{\pm 5.5}$ & $40.9_{\pm 42.7}$ & $0.34_{\pm0.10}$\\
     $\mathcal{T}C$ & $32.1_{\pm 1.9}$ & $98.3_{\pm 89.5}$ & $0.25_{\pm 0.12}$\\
@@ -223,6 +233,7 @@ Our evaluation setup closely mirrors that of \cite{liao2019efficient} in that we
 \end{tabular}
 \end{center}
 \caption{Graph statistics for generation on random trees.}
+\label{tab:randtrees}
 \vspace{-10pt}
 \end{table}
 

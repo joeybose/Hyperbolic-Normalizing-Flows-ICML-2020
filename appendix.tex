@@ -21,7 +21,7 @@ Given a parametrized density on $\mathbb{R}^n$ a \textit{normalizing flow} defin
 
 \end{align}
 }
-Where, $p_{\theta}(z')$ is the probability of the transformed sample and $\partial f / \partial x$ is the Jacobian of $f$. To construct arbitrarily complex densities a chain of functions of the same form as $f$ can be defined and through successive application of change of density for each invertible transformation in the flow. Thus the final sample from a flow is then given by $z_k = f_K \circ f_{K-1} ... \circ f_1(z_0)$ and it's corresponding density can be determined simply by $\ln p_{\theta}(z_K) = \ln p(z_0) - \sum_{k=1}^K\ln \det \Big \lvert \frac{\partial f_k}{\partial z_{k-1}} \Big \rvert$. 
+Where, $p_{\theta}(z')$ is the probability of the transformed sample and $\partial f / \partial x$ is the Jacobian of $f$. To construct arbitrarily complex densities a chain of functions of the same form as $f$ can be defined and through successive application of change of density for each invertible transformation in the flow. Thus the final sample from a flow is then given by $z_j = f_j \circ f_{j-1} ... \circ f_1(z_0)$ and it's corresponding density can be determined simply by $\ln p_{\theta}(z_j) = \ln p(z_0) - \sum_{i=1}^j\ln \det \Big \lvert \frac{\partial f_i}{\partial z_{i-1}} \Big \rvert$. 
 Of practical importance when designing normalizing flows is the cost associated with computed the log determinant of the Jacobian which is computationally expensive and can range anywhere from $O(n!)-O(n^3)$ for an arbitrary matrix and a chosen algorithm. However, through an appropriate choice of $f$ this computation cost can be brought down significantly. While there are many different choices for the transformation function, $f$, in this work we consider only RealNVP based flows as presented in \cite{dinh2016density} and \cite{rezende2015variational} due to their simplicity and expressive power in capturing complex data distributions.
 
 \subsection{Variational Inference with Normalizing Flows}
@@ -35,9 +35,9 @@ One obvious use case for Normalizing Flows is in learning a more expressive ofte
 The tightness of the Evidence Lower Bound (ELBO) also known as the negative free energy of the system, $-\mathcal{F}(x)$, is determined by the quality of the posterior approximation to the true posterior. Thus, one way to enrich the posterior approximation is by letting $q_{\theta}$ be a normalizing flow itself and the resultant latent code be the output of the transformation. If we denote $q_0(z_0)$ the probability of the latent code $z_0$ under the base distribution and $z_k$ as the latent code after $K$ flow layers we may rewrite the Free Energy as follows:
 
 \begin{align}
-    \mathcal{F}(x) &= \mathbb{E}_{q_{0}(z_0)}[\log q_k(z_k) - \log p(x,z_k)] \\
-    &= \mathbb{E}_{q_{0}(z_0)}\Big[\log q_0(z_0) - \sum_{k=1}^K\ln \det \Big \lvert \frac{\partial f_k}{\partial z_{k-1}} \Big \rvert - \log p(x,z_k)\Big]\\
-    &= D_{KL}(q_0(z_0)|| p(z_k)) - \mathbb{E}_{q_{0}(z_0)}\Big[\sum_{k=1}^K\ln \det \Big \lvert \frac{\partial f_k}{\partial z_{k-1}} \Big \rvert - \log p(x|z_k)\Big]
+    \mathcal{F}(x) &= \mathbb{E}_{q_{0}(z_0)}[\log q_k(z_j) - \log p(x,z_j)] \\
+    &= \mathbb{E}_{q_{0}(z_0)}\Big[\log q_0(z_0) - \sum_{i=1}^j\ln \det \Big \lvert \frac{\partial f_i}{\partial z_{i-1}} \Big \rvert - \log p(x,z_i)\Big]\\
+    &= D_{KL}(q_0(z_0)|| p(z_j)) - \mathbb{E}_{q_{0}(z_0)}\Big[\sum_{i=1}^j\ln \det \Big \lvert \frac{\partial f_i}{\partial z_{i-1}} \Big \rvert - \log p(x|z_i)\Big]
 \end{align}
 For convenience we may take $q_0 = \mathcal{N}(\mu, \sigma^2)$ which is a reparametrized gaussian density and $p(z) = \mathcal{N}(0, I)$ a standard normal. 
 

@@ -1,6 +1,8 @@
-\section{Background on Hyperbolic Geometry}
+\section{Background on Hyperbolic Geometry}\label{sec:background}
 
-Within Riemannian geometry, hyperbolic space is a manifold with constant negative curvature $K$ and is of particular interest for embedding hierarchical structures. There are multiple models of $n$-dimensional hyperbolic space, such as the hyperboloid $\mathbb{H}_K^n$, also known as the Lorentz model, or the Poincar\'e disc $\mathbb{D}_K^n$. Figure \ref{fig:explanatory_fig_1} demonstrates how a two-dimensional hyperbolic space can perfectly embed a tree with no distortion, which is impossible in Euclidean space. The shortest distance between two given leaves, denoted by the red line, crucially goes through the origin (yellow node) in hyperbolic space due to its negative curvature. In the next section we briefly review the Lorentz model of hyperbolic geometry. We are not assuming background in Riemannian geometry, though (Appendix \ref{riemannian_geometry_appendix}) and source \cite{Ratcliffe94} are of use to the interested reader. Henceforth, for notational clarity, we use boldface font to denote points on the hyperboloid manifold.
+Within Riemannian geometry, hyperbolic space is a manifold with constant negative curvature $K$ and is of particular interest for embedding hierarchical structures. There are multiple isometries of $n$-dimensional hyperbolic space, such as the hyperboloid $\mathbb{H}_K^n$, also known as the Lorentz model, or the Poincar\'e disk $\mathbb{D}_K^n$. Figure \ref{fig:explanatory_fig_1} illustrates some key properties of $\mathbb{H}_K^n$ and $\mathbb{D}_K^n$, highlighting how distances grow exponentially as you move away from the origin and how the shortest paths between points tend to go through the origin, giving rise to heirarchical or tree-like structure. %how a two-dimensional hyperbolic space can perfectly embed a tree with arbitrarily low distortion \cite{sarkar2011low}%, which is not possible in Euclidean spaces as it does not grow exponentially like the former leaving little room to place nodes. 
+%Crucially, this implies that shortest distance between two given leaves, denoted by the red line, respects the hierarchical structure and must go pass through the origin (yellow node) in hyperbolic space but not in Euclidean space. 
+In the next section we briefly review the Lorentz model of hyperbolic geometry. We are not assuming background in Riemannian geometry, though (Appendix \ref{riemannian_geometry_appendix}) and source \cite{Ratcliffe94} are of use to the interested reader. Henceforth, for notational clarity, we use boldface font to denote points on the hyperboloid manifold.
 
 
 % We briefly review the Lorentz model of hyperbolic geometry. We are not
@@ -9,7 +11,8 @@ Within Riemannian geometry, hyperbolic space is a manifold with constant negativ
 % Riemannian geometry.} a very useful source is \cite{Ratcliffe94}. Henceforth, for notational clarity, we use boldface font to denote points on the hyperboloid manifold.
 
 \subsection{Lorentz Model of Hyperbolic Geometry}
-Historically hyperbolic space arose as an example of a geometry that is internally consistent but breaks Euclid's parallel postulate.  An $n-$dimensional hyperbolic space, $\mathbb{H}^n_K$, is the unique, complete, simply-connected $n-$dimensional Riemannian manifold of constant negative curvature, $K$.  For our purposes the Lorentz model is the most convenient representation of hyperbolic space, since it is equipped with relatively simple explicit formulas and useful numerical stability properties \cite{nickel2018learning}. The Lorentz model embeds hyperbolic space $\mathbb{H}^n_K$ within the $n+1-$dimensional Minkowski space, defined as the manifold $\mathbb{R}^{n+1}$ equipped with the following inner product:
+%Historically, hyperbolic space arose as an example of a geometry that is internally consistent but breaks Euclid's parallel postulate.  
+An $n-$dimensional hyperbolic space, $\mathbb{H}^n_K$, is the unique, complete, simply-connected $n-$dimensional Riemannian manifold of constant negative curvature, $K$.  For our purposes the Lorentz model is the most convenient representation of hyperbolic space, since it is equipped with relatively simple explicit formulas and useful numerical stability properties \cite{nickel2018learning}. The Lorentz model embeds hyperbolic space $\mathbb{H}^n_K$ within the $n+1-$dimensional Minkowski space, defined as the manifold $\mathbb{R}^{n+1}$ equipped with the following inner product:
 \begin{equation}\label{eq:lorentzmetric}
     \langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}} := -x_0y_0 + x_1y_1 + \dots + x_ny_n,
 \end{equation}
@@ -44,19 +47,19 @@ Of special interest are vectors in the tangent space at the origin of $\mathbb{H
 \rangle_{\mathcal{L}}} = ||\textbf{v}||_2$.  Thus \emph{at the origin} the
 partial derivatives with respect to the ambient coordinates, $\mathbb{R}^{n+1}$, defines the
 covariant derivative.  
-Of course, this is not generally true at other points but we will define our transformations such that we only require derivatives at the origin.
+%Of course, this is not generally true at other points but we will define our transformations such that we only require derivatives at the origin.
 
 \xhdr{Projections}
 Starting from the extrinsic view by which we consider $\mathbb{R}^{n+1} \supset \mathbb{H}^{n}_K$, we may project any vector $x \in \mathbb{R}^{n+1}$ on to the hyperboloid using the shortest Euclidean distance:
 \begin{equation}
     \textnormal{proj}_{\mathbb{H}^{n}_K}(x) = \frac{x}{\sqrt{-K}||x||_{\mathcal{L}}}.
 \end{equation}
-Furthermore, by definition a point on the hyperboloid satisfies $\langle \textbf{x}, \textbf{x} \rangle_{\mathcal{L}} = 1/K$ and thus when provided with $n$ coordinates $\hat{x} = (x_1, \dots, x_{n})$ we can always determine the missing coordinate to get a point on $\mathbb{H}^n_K$
+Furthermore, by definition a point on the hyperboloid satisfies $\langle \textbf{x}, \textbf{x} \rangle_{\mathcal{L}} = 1/K$ and thus when provided with $n$ coordinates $\hat{x} = (x_1, \dots, x_{n})$ we can always determine the missing coordinate to get a point on $\mathbb{H}^n_K$:
 \begin{equation}
     \label{eqn:hyperboloid_projection}
     x_0 = \sqrt{||\hat{x}||^2_2 + \frac{1}{K}}.
 \end{equation}
-We later exploit this fact in \ref{wrapped_hyerboloid_coupling_section}, to determine points on $\mathbb{H}^n_K$ that our normalizing flow should transport to.
+%We later exploit this fact in \ref{wrapped_hyerboloid_coupling_section}, to determine points on $\mathbb{H}^n_K$ that our normalizing flow should transport to.
 
 \xhdr{Exponential Map}
 The exponential map takes a vector, $v$, in the tangent space of a point $\textbf{x} \in \mathbb{H}^{n}_K$ to a point on the manifold---i.e., $\textbf{y} = \textnormal{exp}^K_\textbf{x}(v): \mathcal{T}_{\textbf{x}} \mathbb{H}^{n}_K \to \mathbb{H}^{n}_K$ by moving a unit length along the \textit{geodesic}, $\gamma$ (straightest parametric curve), uniquely defined by $\gamma(0) = \textbf{x}$ with direction $\gamma '(0)= v$. The closed form expression for the Lorentz model is then given by
@@ -81,14 +84,9 @@ The parallel transport for two points $\textbf{x},\textbf{y} \in \mathbb{H}^{n}_
     \textnormal{PT}^K_{\textbf{x} \to \textbf{y}}(v) & = v - \frac{ \langle \log^K_{\textbf{x}}(\textbf{y}), v \rangle_{\mathcal{L}}}{d(\textbf{x},\textbf{y})_{\mathcal{L}}} (\log^K_{\textbf{x}}(\textbf{y})+ \log^K_{\textbf{y}}(\textbf{x})) \nonumber \\
     & = v + \frac{ \langle \textbf{y}, v \rangle_{\mathcal{L}}}{R^2 - \langle \textbf{x}, \textbf{y} \rangle_{\mathcal{L}}} (\textbf{x}+ \textbf{y}),
 \end{align}
-where $\alpha$ is as defined above. Another useful property is that the inverse parallel transport simply carries the vectors back along the geodesic and is simply
+where $\alpha$ is as defined above. Another useful property is that the inverse parallel transport simply carries the vectors back along the geodesic and is simply defined as $(\textnormal{PT}^{K}_{\textbf{x} \to \textbf{y}}(v))^{-1} = \textnormal{PT}^K_{\textbf{y} \to \textbf{x}}(v)$.
 
-\begin{equation}
-       \label{eqn:inv_parallel_transport}
-      (\textnormal{PT}^{K}_{\textbf{x} \to \textbf{y}}(v))^{-1} = \textnormal{PT}^K_{\textbf{y} \to \textbf{x}}(v).
-\end{equation}
-
-\subsection{Probability Distributions on Hyperbolic Spaces}
+\subsection{Probability Distributions on Hyperbolic Spaces}\label{sec:hyperprobs}
 
 Probability distributions can be defined on Riemannian manifolds which includes $\mathbb{H}^n_K$ as a special case, by relating an infinitesimal volume on the manifold to a corresponding volume in a homeomorphic Euclidean space by the conservation of measure.
 In particular, given the Riemannian manifold $\mathcal{M}(\textbf{z})$ and its metric $g_\mb{z}$, we have $\int p(\textbf{z}) d\mathcal{M} (\textbf{z}) = \int p(\textbf{z})\sqrt{|g_\mb{z}|}d \textbf{z}$, where $d \textbf{z}$ is the Lebesgue measure. We now briefly survey three distinct generalizations of the normal distribution to Riemannian manifolds.\cut{ following ~\cite{mathieu2019continuous,skopek2019mixed}.}

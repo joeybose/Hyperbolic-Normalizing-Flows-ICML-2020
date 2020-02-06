@@ -5,7 +5,7 @@ These methods transform the problem of computing an intractable posterior distri
 Using tractable classes of approximate distributions, \eg, mean-field and Bethe approximations, facilitates efficient inference, at the cost of limiting the expressiveness of the learnt posterior. 
 %However, it also limits the expressivity of the approximate posterior, and even in the asymptotic regime learning may be unable to produce samples from the true posterior when using such strong assumptions \cite{blei2017variational}. 
 
-In recent years, the power of these VI methods have been further improved by employing {\em normalizing flows}, which can greatly increase the expressivity of the approximate posterior distributions. 
+In recent years, the power of these variation inference methods have been further improved by employing {\em normalizing flows}, which greatly increase the flexibility of the approximate posterior distribution. 
 %Recent work on {\em normalizing flows} alleviates this modelling bottleneck.
 Normalizing flows involve learning a series of invertible transformations, which are used to transform a sample from a simple base distribution to a sample from a richer distribution \cite{rezende2015variational}. 
 Indeed, flow based posteriors enjoy many advantages such as efficient sampling, exact likelihood estimation and low-variance gradient estimators when the base distribution is reparametrizable, making them ideal for modern machine learning problems.
@@ -16,7 +16,7 @@ There have been numerous advances in normalizing flow construction in Euclidean 
     \vspace{-10pt}
     \includegraphics[width=\linewidth]{explanatory_fig.pdf}
     \vspace{-10pt}
-    \caption{The shortest path between a given pair of node embeddings in $\mathbb{R}^2$ and hyperbolic space as modelled by $\mathbb{H}^2_K$ and $\mathbb{D}^2_K$.}
+    \caption{The shortest path between a given pair of node embeddings in $\mathbb{R}^2$ and hyperbolic space as modelled by the Lorentz model $\mathbb{H}^2_K$ and Poincar\'e disk $\mathbb{D}^2_K$. Unlike Euclidean space, distances between points grow exponentially as you move away from the origin in hyperbolic space, and thus the shortest paths between points in hyperbolic space go through the origin, giving rise to hierarchical, tree-like structure. }
     \vspace{-10pt}
     \label{fig:explanatory_fig_1}
 \end{figure}
@@ -25,8 +25,8 @@ However, one key limitation of the current normalizing flows is that they are re
 %As a result, the learning problem often needs to \textit{rediscover} structure---such as hierarchy---that is known {\em a priori}.
 %While  they fail to incorporate known structure in data burdening the learning problem as it needs to \textit{rediscover} structure that is known apriori. 
 Many real world datasets, such as ontologies, social networks, sentences in natural language, and evolutionary relationships between biological entities in phylogenetics exhibit rich hierarchical or tree-like structure.
-Hierarchical data of this kind can be naturally represented in hyperbolic spaces, \ie, non-Euclidean spaces with negative curvature. 
-But Euclidean normalizing flows fail to incorporate these structural inductive biases since the Euclidean space cannot embed deep hierarchies without suffering from high distortion \cite{sarkar2011low}, and sampling from densities defined on Euclidean space will inevitability generate points that do not lie on the underlying hyperbolic space. 
+Hierarchical data of this kind can be naturally represented in hyperbolic spaces, \ie, non-Euclidean spaces with negative curvature (Figure \ref{fig:explanatory_fig_1}). 
+But Euclidean normalizing flows fail to incorporate these structural inductive biases, since Euclidean space cannot embed deep hierarchies without suffering from high distortion \cite{sarkar2011low}, and sampling from densities defined on Euclidean space will inevitability generate points that do not lie on the underlying hyperbolic space. 
 %Intuitively, this occurs due to a fundamental geometric limitation of Euclidean spaces.
 %Hierarchies (i.e, trees) generally grow exponentially as their depth increases, and the homogeneous structure of Euclidean space is unable to embed such exponential growth. 
 
@@ -45,13 +45,13 @@ To address this fundamental limitation, we present the first extension of normal
 %Our work answer the question: how can we learn rich probability distributions over hyperbolic latent variables? 
 %Currently, there are no existing approaches to extend normalizing flows to hyperbolic spaces
 %Despite the known importance of leveraging hyperbolic spaces for modeling hierarchical data \cite{nickel2018learning}, there are no existing approaches for flexible density estimation on hyperbolic spaces. 
-Prior works have considered learning models with hyperbolic parameters  \cite{liu2019hyperbolic,nickel2018learning} as well as VI with hyperbolic latent variables \cite{nagano2019wrapped,mathieu2019continuous}, but our work represents the first approach to allow flexible density estimation in hyperbolic space. 
+Prior works have considered learning models with hyperbolic parameters  \cite{liu2019hyperbolic,nickel2018learning} as well as variational inference with hyperbolic latent variables \cite{nagano2019wrapped,mathieu2019continuous}, but our work represents the first approach to allow flexible density estimation in hyperbolic space. 
 %but the approximate posterior distribution is still limited due to the mean-field assumption. 
 %In this work, we answer the following question: how can we learn rich probability distributions over hyperbolic latent variables? 
 %using stochastic variational inference that better approximate true posteriors for hierarchical data?
 
-We appeal to the geometry of hyperbolic spaces and construct novel normalizing flows in the Lorentz model of hyperbolic geometry. 
-To define our normalizing flow we introduce two new forms of coupling, {\em Tangent Coupling} and {\em Wrapped Hyperbolic Coupling}, that define flexible and invertible transformations in hyperbolic spaces capable of transforming sampled points across the hyperbolic space. 
-We further derive the change of volume associated with this transformation and show that it can be computed efficiently with $\mathcal{O}(n)$ cost, where $n$ is the dimension of the hyperbolic space.
+%We appeal to the geometry of hyperbolic spaces and construct novel normalizing flows in the Lorentz model of hyperbolic geometry. 
+To define our normalizing flows we leverage the Lorentz model of hyperbolic geometry and introduce two new forms of coupling, {\em Tangent Coupling} ($\mathcal{TC}$) and {\em Wrapped Hyperbolic Coupling} ($\mathcal{W}\mathbb{H}\mathcal{C}$), that define flexible and invertible transformations capable of transforming sampled points in the hyperbolic space. 
+We derive the change of volume associated with these transformations and show that it can be computed efficiently with $\mathcal{O}(n)$ cost, where $n$ is the dimension of the hyperbolic space.
 We empirically validate our proposed normalizing flow on structured density estimation, reconstruction and generation tasks on hierarchical data. \cut{We find that using Wrapped Hyperbolic flows allows for an \red{\%XX} an aggregate absolute improvement over Euclidean flows.}
 

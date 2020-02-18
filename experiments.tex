@@ -1,6 +1,7 @@
 \section{Experiments}
-We evaluate our $\mathcal{T}C$-flow and $\mathcal{W}\mathbb{H}C$-flow on three tasks:  structured density estimation, graph reconstruction, and graph generation.\footnote{Code is included with the submission and will be released.} Throughout our experiments we rely on three main baselines. %, which are compared against normalizing flows constructed using $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ layers. 
-In Euclidean space we use Gaussian latent variables and affine coupling flows \cite{dinh2016density}, denoted $\mathcal{N}$ and $\mathcal{N}C$, respectively. In the Lorentz model we use Wrapped Normal latent variables as an analogous baseline \cite{nagano2019wrapped}. Since all model parameters are defined on tangent spaces, models can be trained with conventional optimizers like Adam \cite{kingma2014adam}. Following previous work, we also consider the curvature $K$ as a learnable parameter 
+\label{experiments}
+We evaluate our $\mathcal{T}C$-flow and $\mathcal{W}\mathbb{H}C$-flow on three tasks:  structured density estimation, graph reconstruction, and graph generation.\footnote{Code is included with the submission and will be released.} Throughout our experiments, we rely on three main baselines. %, which are compared against normalizing flows constructed using $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ layers. 
+In Euclidean space, we use Gaussian latent variables and affine coupling flows \cite{dinh2016density}, denoted $\mathcal{N}$ and $\mathcal{N}C$, respectively. In the Lorentz model, we use Wrapped Normal latent variables as an analogous baseline \cite{nagano2019wrapped}. Since all model parameters are defined on tangent spaces, models can be trained with conventional optimizers like Adam \cite{kingma2014adam}. Following previous work, we also consider the curvature $K$ as a learnable parameter 
 %with a warmup of $10$ epochs %WILL: ADD THE DETAIL ON WARM UP TO APPENDIX E
 and we clamp the max norm of vectors to $40$ before any logarithmic or exponential map \cite{skopek2019mixed}. Appendix E contains details on model architectures and implementation concerns. 
 
@@ -9,9 +10,9 @@ We first consider structured density estimation in a canonical VAE setting \cite
 
 Our results are shown in Tables \ref{table:bdp_table} and \ref{table:mnist_table}.
 On both datasets we observe our hyperbolic flows provide significant improvements when using latent spaces of low dimension.
-This result matches theoretical expectations---\eg, that trees can be perfectly embedding in $\mathbb{H}^2_K$---and dovetails with previous work on graph embedding \cite{nickel2017poincare}, highlighting that the benefit of leveraging hyperbolic space is most prominent in small dimensions. However, as we increase the latent dimension, the Euclidean approaches can compensate for this intrinsic geometric limitation.  
+This result matches theoretical expectations---\eg, that trees can be perfectly embedded in $\mathbb{H}^2_K$---and dovetails with previous work on graph embedding \cite{nickel2017poincare}. This highlights that the benefit of leveraging hyperbolic space is most prominent in small dimensions. However, as we increase the latent dimension, the Euclidean approaches can compensate for this intrinsic geometric limitation.  
 \cut{
-and we observe significant gains on both datasets when the latent dimension is small.\cut{In particular, $\mathcal{W}\mathbb{H}C$ performs the best with 2 dimensional latents with a relative improvement of \red{\%XX} over $\mathcal{N}C$ normalizing flows.} We reconcile this result by recalling that even in two dimensions hyperbolic spaces have more room to embed hierarchies. As we increase the latent dimension however we see that Euclidean based approaches outperform our proposed models which is line with similar observation in prior work \cite{nickel2017poincare}.}
+and we observe significant gains on both datasets when the latent dimension is small.\cut{In particular, $\mathcal{W}\mathbb{H}C$ performs the best with 2-dimensional latents with a relative improvement of \red{\%XX} over $\mathcal{N}C$ normalizing flows.} We reconcile this result by recalling that even in two dimensions hyperbolic spaces have more room to embed hierarchies. As we increase the latent dimension however we see that Euclidean based approaches outperform our proposed models which are line with similar observation in prior work \cite{nickel2017poincare}.}
 
 \begin{table}[ht]
 \begin{small}
@@ -56,14 +57,14 @@ and we observe significant gains on both datasets when the latent dimension is s
 \label{table:mnist_table}
 \end{center}
 \vskip -0.1in
-\vspace{-10pt}
+\vspace{-13pt}
 \end{small}
 \end{table}
 
 \subsection{Graph Reconstruction}
 We evaluate the practical utility of our hyperbolic flows by conducting experiments on the task of link prediction using graph neural networks (GNNs) \cite{scarselli2008graph} as an inference model. Given a simple graph $\mathcal{G}=(\V,A, X)$, defined by a set of nodes $\mathcal{V}$, an adjacency matrix $A \in \mathbb{Z}^{|\mathcal{V}| \times |\mathcal{V}|}$ and node feature matrix $X \in \mathbb{R}^{|\mathcal{V}| \times n}$, we learn a VGAE \cite{kipf2016variational} model whose inference network, $q_\phi$, defines a distribution over node embeddings $q_\phi(Z | A, X)$. To score the likelihood of an edge existing between pairs of nodes we use an inner product decoder: $p(A_{u,v}=1|z_u,z_v) = \sigma(z_u^Tz_v)$ (with dot products computed in $\mathcal{T}_{\textbf{o}}\mathbb{H}^n_K$ when necessary). Given these components, the inference GNNs are trained to maximize the variational lower bound on a training set of edges. 
 
-We use two different disease datasets taken from \citep{chami2019hyperbolic} and \citep{mathieu2019continuous}\footnote{We uncovered issues with the two remaining datasets in \cite{mathieu2019continuous} and are thus omit them (Appendix F).} for evaluation purposes. The first dataset Diseases-\RNum{1} is composed of a network of disorders and disease genes linked by known disorder–gene associations \cite{goh2007human}. In the second dataset Diseases-\RNum{2}, we build tree networks of an SIR disease spreading model \cite{anderson1992infectious}, where node features determine the susceptibility to the disease. In Table \ref{graph_embeddings_table} we report the AUC and average precision (AP) on the test set.
+We use two different disease datasets taken from \citep{chami2019hyperbolic} and \citep{mathieu2019continuous}\footnote{We uncovered issues with the two remaining datasets in \cite{mathieu2019continuous} and thus omit them (Appendix F).} for evaluation purposes. The first dataset Diseases-\RNum{1} is composed of a network of disorders and disease genes linked by the known disorder–gene associations \cite{goh2007human}. In the second dataset Diseases-\RNum{2}, we build tree networks of a SIR disease spreading model \cite{anderson1992infectious}, where node features determine the susceptibility to the disease. In Table \ref{graph_embeddings_table} we report the AUC and average precision (AP) on the test set.
 We observe consistent improvements when using hyperbolic $\mathcal{W}\mathbb{H}C$ flow. Similar to the structured density estimation setting, the performance gains of $\mathcal{W}\mathbb{H}C$ are best observed in low-dimensional latent spaces.
 
 \begin{table}[ht]
@@ -118,7 +119,7 @@ As a synthetic testbed, we construct datasets containing uniformly random trees 
 We then train a generative model to learn the distribution of these graphs. 
 We expect the hyperbolic flows to provide a significant benefit for generating valid random trees, as well as learning the distribution of lobster graphs, which are a special subset of trees. 
 
-We follow the two stage training procedure outlined in Graph Normalizing Flows \cite{liu2019graph} in that we first train an autoencoder to give node latents on which we train an NF for density estimation. Empirically, we find that using GRevNets \cite{liu2019graph} and defining edge probabilities using a distance based decoder consistently leads to better generation performance. Thus we define edge probabilities as $p(A_{u,v}=1|z_u,z_v) = \sigma((-d_{\mathcal{G}}(u,v) - b)/\tau)$ where $b$ and $\tau$ are learned edge specific bias and temperature parameters. At inference time, we first sample the number of nodes to generate from the empirical distribution of the dataset. We then independently sample node latents from our prior, beginning with a fully connected graph, and then push these samples through our learned flow to give refined edge probabilities.
+We follow the two-stage training procedure outlined in Graph Normalizing Flows \cite{liu2019graph} in that we first train an autoencoder to give node-level latents on which we train an NF for density estimation. Empirically, we find that using GRevNets \cite{liu2019graph} and defining edge probabilities using a distance-based decoder consistently leads to better generation performance. Thus we define edge probabilities as $p(A_{u,v}=1|z_u,z_v) = \sigma((-d_{\mathcal{G}}(u,v) - b)/\tau)$ where $b$ and $\tau$ are learned edge specific bias and temperature parameters. At inference time, we first sample the number of nodes to generate from the empirical distribution of the dataset. We then independently sample node latents from our prior, beginning with a fully connected graph, and then push these samples through our learned flow to give refined edge probabilities.
 
 \begin{figure*}
     \centering
@@ -134,7 +135,7 @@ We see that hyperbolic normalizing flows learn to generate tree-like graphs and 
 To quantify these intuitions, Table \ref{tab:randtrees} contains statistics on how often the different models generate valid trees (denoted by ``accuracy''), as well as the average number of triangles and the average global clustering coefficients for the generated graphs. 
 Since the target data is random trees, a perfect model would achieve 100\% accuracy, with no triangles, and a global clustering of 0 for all graphs. 
 We see that the hyperbolic models generate valid trees more often, and they generate graphs with fewer triangles and lower clustering on average.
-Finally, to evaluate how well the models match the specific properties of the lobster graphs, we follow \cite{liao2019efficient} and report the MMD distance between the generated graphs and a test set for various graph statistics (Figure \ref{fig:lobster_graph_gen}).
+Finally, to evaluate how well the models match the specific properties of the lobster graphs, we follow \citet{liao2019efficient} and report the MMD distance between the generated graphs and a test set for various graph statistics (Figure \ref{fig:lobster_graph_gen}).
 Again, we see that the hyperbolic approaches significantly outperform the Euclidean normalizing flow. 
 
 \begin{table}[]
@@ -152,12 +153,12 @@ Again, we see that the hyperbolic approaches significantly outperform the Euclid
 \end{center}
 \caption{Generation statistics on random trees over $5$ runs.}
 \label{tab:randtrees}
-\vspace{-10pt}
+\vspace{-15pt}
 \end{table}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{lobster_graph_gen.png}
+    \includegraphics[width=0.85\linewidth]{lobster_graph_gen.png}
     \vspace{-15pt}
     \caption{MMD scores for graph generation on Lobster graphs. Note, that $\mathcal{N}C$ achieves $0\%$ accuracy.}
     \label{fig:lobster_graph_gen}

@@ -20,7 +20,7 @@
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage{xspace}
-\usepackage{natbib}
+%\usepackage{natbib}
 \usepackage{bbm}
 \usepackage{easybmat}
 %\usepackage{textcomp, libertine}
@@ -51,14 +51,14 @@
 % Attempt to make hyperref and algorithmic work together better:
 
 % Use the following line for the initial blind version submitted for review:
-\usepackage{icml2020}
+%\usepackage[accepted]{icml2020}
+\usepackage[accepted]{icml2020}
 
 % If accepted, instead use the following line for the camera-ready submission:
 %\usepackage[accepted]{icml2020}
 
 % The \icmltitle you define below is probably too long as a header.
 % Therefore, a short form for the running title is supplied here:
-\icmltitlerunning{Submission and Formatting Instructions for ICML 2020}
 
 \begin{document}
 \theoremstyle{definition}
@@ -81,16 +81,19 @@
 \icmlsetsymbol{equal}{*}
 
 \begin{icmlauthorlist}
-
+\icmlauthor{Avishek Joey Bose}{mcgill,mila}
+\icmlauthor{Ariella Smofsky}{mcgill,mila}
+\icmlauthor{Renjie Liao}{uoft,vector}
+\icmlauthor{Prakash Panangaden}{mcgill,mila}
+\icmlauthor{William L. Hamilton}{mcgill,mila}
 \end{icmlauthorlist}
 
-\icmlaffiliation{to}{Department of Computation, University of Torontoland, Torontoland, Canada}
-\icmlaffiliation{goo}{Googol ShallowMind, New London, Michigan, USA}
-\icmlaffiliation{ed}{School of Computation, University of Edenborrow, Edenborrow, United Kingdom}
+\icmlaffiliation{mcgill}{McGill University}
+\icmlaffiliation{mila}{Mila}
+\icmlaffiliation{uoft}{University of Toronto}
+\icmlaffiliation{vector}{Vector Institute}
 
-\icmlcorrespondingauthor{Cieua Vvvvv}{c.vvvvv@googol.com}
-\icmlcorrespondingauthor{Eee Pppp}{ep@eden.co.uk}
-
+\icmlcorrespondingauthor{Joey Bose}{joey.bose@mail.mcgill.ca}
 % You may provide any keywords that you
 % find helpful for describing your paper; these are used to populate
 % the "keywords" metadata in the PDF but will not be shown in the document
@@ -107,38 +110,32 @@
 % The \icmlEqualContribution command is standard text for equal contribution.
 % Remove it (just {}) if you do not need this facility.
 
-%\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
-\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+%\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
 The choice of approximate posterior distributions plays a central role in stochastic variational inference (SVI). One effective solution is the use of normalizing flows \cut{defined on Euclidean spaces} to construct flexible posterior distributions. 
-%However, practitioners often have prior knowledge of their data in the form of known underlying hierarchies, and existing normalizing flows designed for Euclidean space are unable to utilize this prior knowledge.
 However, one key limitation of existing normalizing flows is that they are restricted to the Euclidean space and are ill-equipped to model data with an underlying hierarchical structure.
-%In this work, we consider the problem of SVI of latent variables in order to learn expressive posteriors that respect the hierarchical structure of given data. We first elevate normalizing flows to hyperbolic spaces using tangent coupling transforms ($\mathcal{T}C$), which are better equipped for modeling hierarchical structures. 
 To address this fundamental limitation, we present the first extension of normalizing flows to hyperbolic spaces. 
-We first elevate normalizing flows to hyperbolic spaces using coupling transforms defined on the tangent bundle, termed Tangent Coupling ($\mathcal{TC}$). %, which are better equipped for modeling hierarchical structures. 
-We further introduce Wrapped Hyperbolic Coupling ($\mathcal{W}\mathbb{H}C$), a fully invertible and learnable transformation that explicitly utilizes the geometric structure of hyperbolic spaces, allowing for expressive posteriors while being efficient to sample from. We demonstrate the efficacy of our novel normalizing flow over hyperbolic VAEs and Euclidean normalizing flows. 
+We first elevate normalizing flows to hyperbolic spaces using coupling transforms defined on the tangent bundle, termed Tangent Coupling ($\mathcal{TC}$). 
+We further introduce Wrapped Hyperboloid Coupling ($\mathcal{W}\mathbb{H}C$), a fully invertible and learnable transformation that explicitly utilizes the geometric structure of hyperbolic spaces, allowing for expressive posteriors while being efficient to sample from. We demonstrate the efficacy of our novel normalizing flow over hyperbolic VAEs and Euclidean normalizing flows. 
 Our approach achieves improved performance on density estimation, as well as reconstruction of real-world graph data, which exhibit a hierarchical structure. 
 Finally, we show that our approach can be used to power a generative model over hierarchical data using hyperbolic latent variables. 
 \end{abstract}
-
-% Old submitted abstract
-\cut{
-The choice of approximate posterior distributions plays a central role in stochastic variational inference. One effective solution is the use of normalizing flows defined on Euclidean spaces to construct flexible posterior distributions. However, practitioners often have prior knowledge of their data in the form of known underlying hierarchies, and existing normalizing flows designed for Euclidean space are unable to utilize this prior knowledge. In this work, we consider the problem of stochastic variational inference of latent variables in order to learn expressive posteriors that respect the hierarchical structure of given data. We first elevate normalizing flows to hyperbolic spaces, which are better equipped for modeling hierarchical structures. We further introduce Wrapped Hyperbolic Coupling, a fully invertible and learnable transformation that explicitly utilizes the rich geometry of hyperbolic spaces allowing for expressive posteriors while being efficient to sample from. We demonstrate the efficacy of our Wrapped Hyperbolic Coupling flow over hyperbolic VAEs and comparable Euclidean normalizing flows. Our approach achieves improved performance on density estimation, as well as reconstruction of real-world graph data, which exhibit a hierarchical structure. Finally, we show that our approach can be used to power a generative model over hierarchical data using hyperbolic latent variables.
-}
 
 
 \input{introduction.tex}
 \input{background.tex}
 \input{method.tex}
 \input{experiments.tex}
-\input{related_work.tex}
+\input{relatedwork.tex}
 \input{conclusion.tex}
 
+\subsection*{Acknowledgements}
+ Funding: AJB is supported by an IVADO Excellence Fellowship. RL was supported by Connaught International Scholarship and RBC Fellowship. WLH is supported by a Canada CIFAR AI Chair. This work was also supported by NSERC Discovery Grants held by WLH and PP. In addition the authors would like to thank Chinwei Huang, Maxime Wabartha, Andre Cianflone and Andrea Madotto  for helpful feedback on earlier drafts of this work and Kevin Luk, Laurent Dinh and Niky Kamran for helpful technical discussions.
 
 
-
-\clearpage
+%\clearpage
 \bibliography{bibliography.bib}
 \bibliographystyle{icml2020}
 

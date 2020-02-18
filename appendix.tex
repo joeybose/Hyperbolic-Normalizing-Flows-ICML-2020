@@ -2,14 +2,14 @@
 \onecolumn
 \section{Background on Riemannian Geometry}
 \label{riemannian_geometry_appendix}
-A manifold is a topological space that locally resembles a Euclidean space of the same dimensionality. If $\mathcal{M}$ is an $n-$dimensional manifold then a chart, $\psi: U \to V$, on $\mathcal{M}$ maps an open subset $U$ to an open subset $V \subset \mathbb{R}^n$. Furthermore, the image of the point $p \in U$, denoted $\psi(p) : \mathbb{R}^n$ is termed the local coordinates of $p$ on the chart $\psi$. Examples of manifolds include $\mathbb{R}^n$, the Hypersphere $\mathbb{S}^n$, the Hyperboloid $\mathbb{H}^n$, a torus and so on and so forth. In this paper we take an extrinsic view of the geometry, that is to say a manifold can be thought of as being embedded in a higher dimensional Euclidean space, ---i.e. $\mathcal{M}^n \subset \mathbb{R}^{n+1}$, and inherits the coordinate system of the ambient space. 
+An $n$-dimensional manifold is a topological space that is equipped with a family of open sets $U_i$ which cover the space and a family of functions $\psi_i$ that are homeomorphisms between the $U_i$ and open subsets of $\mathbb{R}$.  The pairs $(U_i,\psi_i)$ are called \emph{charts}.  A crucial requirement is that if two open sets $U_i$ and $U_j$ intersect in a region, call it $U_{ij}$, then the composite map $\psi_i\circ \psi_j^{-1}$ restricted to $U_{ij}$ is infinitely differentiable. If $\mathcal{M}$ is an $n-$dimensional manifold then a chart, $\psi: U \to V$, on $\mathcal{M}$ maps an open subset $U$ to an open subset $V \subset \mathbb{R}^n$. Furthermore, the image of the point $p \in U$, denoted $\psi(p) : \mathbb{R}^n$ is termed the local coordinates of $p$ on the chart $\psi$. Examples of manifolds include $\mathbb{R}^n$, the Hypersphere $\mathbb{S}^n$, the Hyperboloid $\mathbb{H}^n$, a torus. In this paper we take an extrinsic view of the geometry, that is to say a manifold can be thought of as being embedded in a higher dimensional Euclidean space, ---i.e. $\mathcal{M}^n \subset \mathbb{R}^{n+1}$, and inherits the coordinate system of the ambient space. This is not how the subject is usually developed but for spaces of constant curvature one gets convenient formulas.
 
-\xhdr{Tangent Spaces} Let $p \in \mathcal{M}$ be a point on an $n-$dimensional smooth manifold and let $\gamma(t) \to \mathcal{M}$ be a differentiable parametric curve with parameter $t \in [-\epsilon, \epsilon]$ passing through the point such that $\gamma(0) = p$. Since $\mathcal{M}$ is a smooth manifold we can trace the curve in local coordinates via a chart $\psi$ and the entire curve is given in local coordinates by $x = \psi \circ \gamma(t)$. The tangent vector to this curve at $p$ is then simply $v = (\psi \circ \gamma)'(0)$. Another natural interpretation of the tangent vector of $\gamma$ is by interpreting the point $p$ as a position vector and the tangent vector is then easily interpreted as the velocity vector at that point.\cut{Stated another way the tangent vector is a vector of partial derivatives for every coordinate.} Using this definition the set of all tangent vectors at $p$ is denoted as $\mathcal{T}_p{\mathcal{M}}$, and is called the tangent space at $p$. 
+\xhdr{Tangent Spaces} Let $p \in \mathcal{M}$ be a point on an $n-$dimensional smooth manifold and let $\gamma(t) \to \mathcal{M}$ be a differentiable parametric curve with parameter $t \in [-\epsilon, \epsilon]$ passing through the point such that $\gamma(0) = p$. Since $\mathcal{M}$ is a smooth manifold we can trace the curve in local coordinates via a chart $\psi$ and the entire curve is given in local coordinates by $x = \psi \circ \gamma(t)$. The tangent vector to this curve at $p$ is then simply $v = (\psi \circ \gamma)'(0)$. Another interpretation of the tangent vector of $\gamma$ is by interpreting the point $p$ as a position vector and the tangent vector is then interpreted as the velocity vector at that point.\cut{Stated another way the tangent vector is a vector of partial derivatives for every coordinate.} Using this definition the set of all tangent vectors at $p$ is denoted as $\mathcal{T}_p{\mathcal{M}}$, and is called the tangent space at $p$. 
 
 \xhdr{Riemannian Manifold}
-A Riemannian metric tensor $g$ on a smooth manifold $\mathcal{M}$ is defined as a family of inner products such that at each point $p \in \mathcal{M}$ the inner product takes vectors from the tangent space at $p$, $g_p= \langle \cdot, \cdot \rangle_p: \mathcal{T}_p\mathcal{M} \times \mathcal{T}_p\mathcal{M} \to \mathbb{R}$. This means $g$ is defined for every point on $\mathcal{M}$ and varies smoothly\footnote{Locally, $g$ can be defined using the basis vectors of the tangent space $g_{ij}(p) = g(\frac{\partial}{\partial p_i}, \frac{\partial}{\partial p_j})$.}. In matrix form the Riemannian metric, $G(p)$, can be expressed as, $\forall u,v \in  \mathcal{T}_p\mathcal{M} \times \mathcal{T}_p\mathcal{M}, \langle u, v \rangle_p = g(p)(u,v) = u^T G(p) v$. A smooth manifold manifold $\mathcal{M}$ which is equipped with a Riemannian metric at every point $p \in \mathcal{M}$ is called a Riemannian manifold. Thus every Riemannian manifold is specified as the tuple $(\mathcal{M},g)$ which define the smooth manifold and its associated Riemannian metric tensor.
+A Riemannian metric tensor $g$ on a smooth manifold $\mathcal{M}$ is defined as a family of inner products such that at each point $p \in \mathcal{M}$ the inner product takes vectors from the tangent space at $p$, $g_p= \langle \cdot, \cdot \rangle_p: \mathcal{T}_p\mathcal{M} \times \mathcal{T}_p\mathcal{M} \to \mathbb{R}$. This means $g$ is defined for every point on $\mathcal{M}$ and varies smoothly. Locally, $g$ can be defined using the basis vectors of the tangent space $g_{ij}(p) = g(\frac{\partial}{\partial p_i}, \frac{\partial}{\partial p_j})$. In matrix form the Riemannian metric, $G(p)$, can be expressed as, $\forall u,v \in  \mathcal{T}_p\mathcal{M} \times \mathcal{T}_p\mathcal{M}, \langle u, v \rangle_p = g(p)(u,v) = u^T G(p) v$. A smooth manifold manifold $\mathcal{M}$ which is equipped with a Riemannian metric at every point $p \in \mathcal{M}$ is called a Riemannian manifold. Thus every Riemannian manifold is specified as the tuple $(\mathcal{M},g)$ which define the smooth manifold and its associated Riemannian metric tensor.
 
-Armed with a Riemannian manifold we can now recover some conventional geometric insights such as the length of a parametric curve $\gamma$, the distance between two points on the manifold, local notion of angle, surface area and volume. We define the length of a curve, $L[\gamma] = \int_a^b g_{\gamma (t)} || \gamma '(t)|| dt$. This definition is very similar to the length of a curve on Euclidean spaces if we just observe that the Riemannian metric is $I_n$. Now turning to the distance between points $p$ and $q$ we can reason that it must be the smallest or distance minimizing parametric curve between the points which in the literature are known as \textit{geodesics}. Stated another way: $d(p,q) = \inf \big\{ L[\gamma] \ | \gamma:[a,b] \to \mathcal{M}\big\}$ with ,  $\gamma(a)=p$ and $\gamma(b)=q$. A norm is induced on every tangent space by $g_p$ and is defined as $\mathcal{T}_p\mathcal{M}: || \cdot ||_p :\sqrt{\langle \cdot, \cdot \rangle_p}$. Finally, we can also define an infitisimal volume element on each tangent space and as a result measure $d\mathcal{M}(p) = \sqrt{|G(p)|} dp$, with $dp$ being the Lebesgue measure. 
+Armed with a Riemannian manifold we can now recover some conventional geometric insights such as the length of a parametric curve $\gamma$, the distance between two points on the manifold, local notion of angle, surface area and volume. We define the length of a curve, $L[\gamma] = \int_a^b g_{\gamma (t)} || \gamma '(t)|| dt$. This definition is very similar to the length of a curve on Euclidean spaces if we just observe that the Riemannian metric is $I_n$. Now turning to the distance between points $p$ and $q$ we can reason that it must be the smallest or distance minimizing parametric curve between the points which in the literature are known as \textit{geodesics}\footnote{Actually a geodesic is usually defined as a curve such that the tangent vector is parallel transported along it. It is then a theorem that it gives the shortest path.}. Stated another way: $d(p,q) = \inf \big\{ L[\gamma] \ | \gamma:[a,b] \to \mathcal{M}\big\}$ with ,  $\gamma(a)=p$ and $\gamma(b)=q$. A norm is induced on every tangent space by $g_p$ and is defined as $\mathcal{T}_p\mathcal{M}: || \cdot ||_p :\sqrt{\langle \cdot, \cdot \rangle_p}$. Finally, we can also define an infitisimal volume element on each tangent space and as a result measure $d\mathcal{M}(p) = \sqrt{|G(p)|} dp$, with $dp$ being the Lebesgue measure. 
 
 \section{Background Normalizing Flows}
 \label{normalizing_flow_appendix}
@@ -54,7 +54,7 @@ Where, $s$ and $t$ are parameterized scale and translation functions. As the sec
      x_{1:d} & = y_{1:d} \\
     x_{d+1:D} & = (y_{d+1:D} - t(y_{1:d})\odot \textnormal{exp}(-s(y_{1:d})).
 \end{align}
-Note that the form of the inverse does not depend on calculating the inverses of either $s$ or $t$ allowing them to be complex functions themselves. Further note that with this simple bijection part of the input vector is never touched which can limit the expressiveness of the model. A simple remedy to this is to simply reverse the elements that undergo scale and translation transformations prior to the next coupling layer. Such an alternating pattern ensures that each dimension of the input vector depends in a complex way given a stack of couplings allowing for more expressive models. Finally, the Jacbobian of this transformation is a lower triangular matrix,
+Note that the form of the inverse does not depend on calculating the inverses of either $s$ or $t$ allowing them to be complex functions themselves. Further note that with this simple bijection part of the input vector is never touched which can limit the expressiveness of the model. A simple remedy to this is to simply reverse the elements that undergo scale and translation transformations prior to the next coupling layer. Such an alternating pattern ensures that each dimension of the input vector depends in a complex way given a stack of couplings allowing for more expressive models. Finally, the Jacobian of this transformation is a lower triangular matrix,
 \begin{equation} 
     \frac{\partial y}{\partial x} = \begin{bmatrix}
                                     \mathbb{I}_{d} & 0 \\
@@ -64,69 +64,79 @@ Note that the form of the inverse does not depend on calculating the inverses of
 \end{equation}
 
 \section{Change of Variable for Tangent Coupling}
+We now derive the change in volume formula associated with one $\mathcal{T}C$ layer. Without loss of generality we first define a binary mask which we use to partition the elements of a vector at $\mathcal{T}_{\textbf{o}}\mathbb{H}^n_K$ into two sets. Thus $b$ is defined as 
+$$ 
+b_j = 
+\begin{cases}
+1 &\textrm{if $j\leq d$}\\
+0 &\textrm{otherwise},
+\end{cases}
+$$
+Note that all $\mathcal{T}C$ layer operations exclude the first dimension which is always copied over by setting $b_0 = 1$ and ensures that the resulting sample always remains on $\mathcal{T}_{\textbf{o}}{\mathbb{H}^n_K}$. Utilizing $b$ we may rewrite Equation \ref{eq:tangent_coupling} as,
+
 \label{tangent_coupling_proof_appendix}
 \begin{equation}
-    \textbf{y} =  \textnormal{exp}_{\textbf{o}}(b \odot \tilde{x} + (1 - b)\odot(\tilde{x} \odot \sigma(s(b \odot \tilde{x})) + t(b \odot \tilde{x}))),
+    \textbf{y} =  \textnormal{exp}^K_{\textbf{o}}\big(b \odot \tilde{x} + (1 - b)\odot(\tilde{x} \odot \sigma(s(b \odot \tilde{x})) + t(b \odot \tilde{x}))\big),
 \end{equation}
-where $\tilde{x} = \log_{\textbf{o}}(x)$ is a point on the tangent space at $\textbf{o}$. Similar to the Euclidean RealNVP, we wish to calculate the jacobian determinant of this overall transformation. We do so by first observing that the overall transformation is a valid composition of functions: $y := \textnormal{exp}_{\textbf{o}} \circ f\circ \log_{\textbf{o}}(\textbf{x})$, where $z = f(\tilde{x})$ is the flow in tangent space. Utilizing the chain rule and the identity that the determinant of a product is the product of the determinants of its constituents we may decompose the jacobian determinant as,
+where $\tilde{x} = \log^K_{\textbf{o}}(x)$ is a point on the tangent space at $\textbf{o}$. Similar to the Euclidean RealNVP, we wish to calculate the jacobian determinant of this overall transformation. We do so by first observing that the overall transformation is a valid composition of functions: $y := \textnormal{exp}^K_{\textbf{o}} \circ f\circ \log^K_{\textbf{o}}(\textbf{x})$, where $z = f(\tilde{x})$ is the flow in tangent space. Utilizing the chain rule and the identity that the determinant of a product is the product of the determinants of its constituents we may decompose the jacobian determinant as,
 
 \begin{equation}
-    \textnormal{det}\Big (\frac{\partial \textbf{y}}{\partial \textbf{x}}\Big) =  \textnormal{det}\Big (\frac{\partial \textnormal{exp}_{\textbf{o}}(z)}{\partial z}\Big) \cdot \textnormal{det}\Big (\frac{\partial f(\tilde{x})}{\partial \tilde{x}}\Big) \cdot  \textnormal{det}\Big (\frac{\partial \log_{\textbf{o}}(\textbf{x})}{\partial \textbf{x}}\Big)
+    \textnormal{det}\Big (\frac{\partial \textbf{y}}{\partial \textbf{x}}\Big) =  \textnormal{det}\Big (\frac{\partial \textnormal{exp}^K_{\textbf{o}}(z)}{\partial z}\Big) \cdot \textnormal{det}\Big (\frac{\partial f(\tilde{x})}{\partial \tilde{x}}\Big) \cdot  \textnormal{det}\Big (\frac{\partial \log^K_{\textbf{o}}(\textbf{x})}{\partial \textbf{x}}\Big)
     \label{jac_det_tangent_flow_1}.
 \end{equation}
-Tackling each term on RHS of Eq. \ref{jac_det_tangent_flow_1} individually, $ \textnormal{det}\Big (\frac{\partial \textnormal{exp}_{\textbf{o}}(z)}{\partial z}\Big) = \Big(\frac{\sinh(||z||_{\mathcal{L}})}{||z||_{\mathcal{L}}}\Big)^{D-1}$ as derived in \cite{nagano2019wrapped}. As the logarithmic map is the inverse of the exponential map the jacobian determinant is also the inverse ---i.e.  $\textnormal{det}\Big (\frac{\partial \log_{\textbf{o}}(\textbf{x})}{\partial \textbf{x}}\Big) = \Big(\frac{\sinh(||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}})}{||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-D}$. For the middle term in Eq. \ref{jac_det_tangent_flow_1} we proceed by selecting the standard basis $\{e_1, e_2, ... e_n\}$ which is an orthonormal basis  with respect to the Lorentz inner product. Without loss of generality define $b_k = 1$ if $0 \leq k \leq d$ and $b_k = 0$ for $d < k \leq D$. The directional derivative with respect to a basis element $e_k$ is computed as follows:
+Tackling each term on RHS of Eq. \ref{jac_det_tangent_flow_1} individually, $ \textnormal{det}\Big (\frac{\partial \textnormal{exp}^K_{\textbf{o}}(z)}{\partial z}\Big) = \Big(\frac{R\sinh(\frac{||z||_{\mathcal{L}}}{R})}{||z||_{\mathcal{L}}}\Big)^{n-1}$ as derived in \cite{nagano2019wrapped}. As the logarithmic map is the inverse of the exponential map the jacobian determinant is also the inverse ---i.e.  $\textnormal{det}\Big (\frac{\partial \log^K_{\textbf{o}}(\textbf{x})}{\partial \textbf{x}}\Big) = \Big(\frac{\sinh(||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}})}{||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n}$. For the middle term in Eq. \ref{jac_det_tangent_flow_1} we proceed by selecting the standard basis $\{e_1, e_2, ... e_n\}$ which is an orthonormal basis  with respect to the Lorentz inner product. The directional derivative with respect to a basis element $e_j$ is computed as follows:
 
 \begin{align*}
-    \textnormal{d}f(\tilde{x}) &= \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0} f(\tilde{x} + \epsilon e_k)\\
-    & = \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0} \{b \odot (\tilde{x} + \epsilon e_k) + (1 - b)\odot((\tilde{x} + \epsilon e_k) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_k))) + t(b \odot (\tilde{x} + \epsilon e_k)))\} \\
-    &= b \odot  e_k + \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_k) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_k))) + t(b \odot (\tilde{x} + \epsilon e_k)))\} \\
+    \textnormal{d}f(\tilde{x}) &= \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0} f(\tilde{x} + \epsilon e_j)\\
+    & = \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0} \{b \odot (\tilde{x} + \epsilon e_j) + (1 - b)\odot((\tilde{x} + \epsilon e_j) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_j))) + t(b \odot (\tilde{x} + \epsilon e_j)))\} \\
+    &= b \odot  e_j + \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_j) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_j))) + t(b \odot (\tilde{x} + \epsilon e_j)))\} \\
 \end{align*}
-As $b \in [0,1]^D$ is a binary mask, it is easy to see that if $b_k =1$ then only the first term on the RHS remains and the directional derivative with respect to $e_k$ is simply the basis vector itself. Conversely, if $b_k =0$ then the first term goes to zero and we are left with the second term,
+As $b \in [0,1]^n$ is a binary mask, it is easy to see that if $b_j =1$ then only the first term on the RHS remains and the directional derivative with respect to $e_j$ is simply the basis vector itself. Conversely, if $b_j =0$ then the first term goes to zero and we are left with the second term,
 
 \begin{align*}
-    \textnormal{d}f(\tilde{x}) &= \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_k) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_k))) + t(b \odot (\tilde{x} + \epsilon e_k)))\} \\
-    &=  \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_k) \odot \sigma(s(b \odot \tilde{x})) + t(b \odot \tilde{x}))\} \\
-    &= e_k \odot \sigma(s(b \odot \tilde{x})).
+    \textnormal{d}f(\tilde{x}) &= \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_j) \odot \sigma(s(b \odot (\tilde{x} + \epsilon e_j))) + t(b \odot (\tilde{x} + \epsilon e_j)))\} \\
+    &=  \frac{\partial}{\partial \epsilon} \Big |_{\epsilon=0}\{ (1 - b)\odot((\tilde{x} + \epsilon e_j) \odot \sigma(s(b \odot \tilde{x})) + t(b \odot \tilde{x}))\} \\
+    &= e_j \odot \sigma(s(b \odot \tilde{x})).
 \end{align*}
-Where in the second line we've used the fact $b \odot \epsilon e_k = 0$. All together, the directional derivatives computed using our chosen basis elements are,
+Where in the second line we've used the fact $b \odot \epsilon e_j = 0$. All together, the directional derivatives computed using our chosen basis elements are,
 
 \begin{equation*}
     \textnormal{d}f(\tilde{x}) = (e_1, e_2, \dots e_d, e_{d+1}\odot \sigma(s(b \odot \tilde{x})), \dots e_{D}\odot \sigma(s(b \odot \tilde{x}))).
 \end{equation*}
-The volume factor given by this linear map is $\textnormal{det}( \textnormal{d}f(\tilde{x})) = \sqrt{G^TG}$, where $G$ is the matrix of all directional derivatives. As the basis elements are orthogonal all non-diagonal entries of $G^TG$ go to zero and the determinant is the product of the Lorentz norms of each component. As $||e_k||_{\mathcal{L}} =1$ and $||e_{k}\odot \sigma(s(b \odot \tilde{x}))||_{\mathcal{L}} = ||e_{k}\odot \sigma(s(b \odot \tilde{x}))||_2$ for $\mathcal{T}_{\mathbf{o}}H^{D,1}$ the overall determinant is then $\textnormal{d}f(\tilde{x}) = \textnormal{diag} \ \sigma(s(b \odot \tilde{x}))$. Finally, the full log jacobian determinant of Tangent RealNVP is given by,
+The volume factor given by this linear map is $\textnormal{det}( \textnormal{d}f(\tilde{x})) = \sqrt{G^TG}$, where $G$ is the matrix of all directional derivatives. As the basis elements are orthogonal all non-diagonal entries of $G^TG$ go to zero and the determinant is the product of the Lorentz norms of each component. As $||e_j||_{\mathcal{L}} =1$ and $||e_{j}\odot \sigma(s(b \odot \tilde{x}))||_{\mathcal{L}} = ||e_{j}\odot \sigma(s(b \odot \tilde{x}))||_2$ for $\mathcal{T}_{\mathbf{o}}H^n_K$ the overall determinant is then $\textnormal{d}f(\tilde{x}) = \textnormal{diag} \ \sigma(s(b \odot \tilde{x}))$. Finally, the full log jacobian determinant of a $\mathcal{T}C$ layer is given by,
 
 \begin{equation}
-    \log \textnormal{det}\Big (\frac{\partial \textbf{y}}{\partial \textbf{x}}\Big) = \Big(\frac{\sinh(||z||_{\mathcal{L}})}{||z||_{\mathcal{L}}}\Big)^{D-1} + \textnormal{diag} \ \sigma(s(b \odot \tilde{x})) + \Big(\frac{\sinh(||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}})}{||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-D}
+    \log \textnormal{det}\Big (\frac{\partial \textbf{y}}{\partial \textbf{x}}\Big) = \Big(\frac{R\sinh(\frac{||z||_{\mathcal{L}}}{R})}{||z||_{\mathcal{L}}}\Big)^{n-1} + \sum_{i=d+1}^n\sigma(s(\tilde{x}_1))_i 
+      + \Big(\frac{R\sinh(\frac{||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}{R})}{||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n}
 \end{equation}
 
-Thus the overall computational cost is only slightly larger than the regular Euclidean RealNVP, $\mathcal{O}(kD)$, where $k$ is a constant.
+Thus the overall computational cost is only slightly larger than the regular Euclidean RealNVP, $\mathcal{O}(n)$.
 
 \section{Change of Variable for Wrapped Hyperbolic Coupling}
 \label{wrapped_coupling_proof_appendix}
-We consider the following function $f : \mathbb{H}^n \rightarrow \mathbb{H}^n$, which we use to define a normalizing flow in $n$-dimensional hyperbolic space (represented via the hyperboloid/Lorentz model): 
+We consider the following function $f : \mathbb{H}^n_K \rightarrow \mathbb{H}^n_K$, which we use to define a normalizing flow in $n$-dimensional hyperbolic space (represented via the Lorentz model): 
 \begin{equation}\label{eq:mainflow}
-    f(\mb{x}) = \textnormal{exp}_{\textbf{o}}\left( b \odot \tilde{
-    \mb{x}} + (1-b) \odot \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big) \right),
+    f(\mb{x}) = \textnormal{exp}^K_{\textbf{o}}\left( b \odot \tilde{
+    x} + (1-b) \odot \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big) \right),
 \end{equation}
 
-where $\tildex = \log_\mb{o}(\mb{x}) \in \mc{T}_\mb{o}\mbb{H}^n$ is the projection of $\mb{x} \in \mbb{H}^n$ to the tangent space at the origin, i.e, $\mc{T}_\mb{o}\mbb{H}^n$. 
-The $b$ term is assumed to be a binary mask and without loss of generality we define $b$ so that
+where $\tilde{x} = \log_\mb{o}(\mb{x}) \in \mc{T}_\mb{o}\mbb{H}^n_K$ is the projection of $\mb{x} \in \mbb{H}^n_K$ to the tangent space at the origin, i.e, $\mc{T}_\mb{o}\mbb{H}^n_K$. As in $\mathcal{T}C$ we again utilize a binary mask $b$ so that
 $$ 
-b_i = 
+b_j = 
 \begin{cases}
-1 &\textrm{if $i\leq d$}\\
+1 &\textrm{if $j\leq d$}\\
 0 &\textrm{otherwise},
 \end{cases}
 $$
 where $0 < d < n$.
-In Equation \eqref{eq:mainflow} the function $s : \mc{T}_o\mbb{H}^n \rightarrow \mc{T}_o\mbb{H}^n$ is an arbitrary function on the tangent space at the origin and $\sigma$ denotes the logistic function.
-The function $t : \mc{T}_o\mbb{H}^n \rightarrow \mbb{H}^* \subset {H}^n$ is a map from the tangent space at the origin to a subset of hyperbolic space defined by the set of points satisfying the condition that $\mb{v}_i = 0, \forall i=2...d, v_i \in \mbb{H}^n$ (under their representation in the Lorentz model).
+In Equation \eqref{eq:mainflow} the function $s : \mc{T}_o\mbb{H}^d_K \rightarrow \mc{T}_o\mbb{H}^{n-d}_K$ is an arbitrary function on the tangent space at the origin and $\sigma$ denotes the logistic function.
+The function $t : \mc{T}_o\mbb{H}^d_K \rightarrow \mbb{H}^*_K \subset {H}^n_K$ is a map from the tangent space at the origin to a subset of hyperbolic space defined by the set of points satisfying the condition that $\mb{v}_i = 0, \forall i=2...d, \mb{v}_i \in \mbb{H}^n_K$ (under their representation in the Lorentz model).
 
 Our goal is to derive the Jacobian determinant of $f$, i.e., 
 \begin{equation}
     \left|\textrm{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{x}}\right)\right|,
 \end{equation}
-where $\frac{\partial f(\mb{x})}{\partial \mb{x}} : \mc{T}_\mb{x}\mbb{H}^n \rightarrow \mc{T}_{f(\mb{x})}\mbb{H}^n$ is Jacobian of $f$.
+%where $\frac{\partial f(\mb{x})}{\partial \mb{x}} : \mc{T}_\mb{x}\mbb{H}^n_K \rightarrow \mc{T}_{f(\mb{x})}\mbb{H}^n_K$ is Jacobian of $f$.
 To do so, we will use the following facts without proof or justification:
 \begin{itemize}
     \item 
@@ -136,148 +146,168 @@ To do so, we will use the following facts without proof or justification:
     \end{equation}
     where $\mb{v}$ is introduced via a valid change of variables. 
     \item 
-    \textbf{Fact 2: } The Jacobian determinant for the exponential map $\exp_\mb{u}(\mb{v}) = \mc{T}_{u}\mbb{H}^n \rightarrow \mbb{H}^n$ is given by
+    \textbf{Fact 2: } The Jacobian determinant for the exponential map $\exp^K_\mb{u}(z) = \mc{T}_{u}\mbb{H}^n_K \rightarrow \mbb{H}^n_K$ is given by
     \begin{equation}
-        \left|\textrm{det}(\exp_\mb{u}(\mb{v}))\right| = \left(\frac{\sinh(\|\mb{v}\|_\mc{L})}{\|\mb{v}\|_\mc{L}}\right)^{n-1}.
+        \left|\textrm{det}(\exp^K_\mb{u}(z))\right| =
+        \left(\frac{R\sinh(\frac{||z||_{\mathcal{L}}}{R})}{||z||_{\mathcal{L}}}\right)^{n-1}
     \end{equation}
         \item 
-    \textbf{Fact 3: } The Jacobian determinant for the logarithmic map $\log_\mb{u}(\mb{v}) = \mbb{H}^n \rightarrow \mc{T}_u\mbb{H}^n$ is given by
+    \textbf{Fact 3: } The Jacobian determinant for the logarithmic map $\log^K_\mb{u}(\mb{v}) = \mbb{H}^n_K \rightarrow \mc{T}_u\mbb{H}^n_K$ is given by
     \begin{equation}
-        \left|\textrm{det}(\log_\mb{u}(\mb{v})\right| = \left(\frac{\sinh(\|\log_\mb{u}(\mb{v})\|_\mc{L})}{\|\log_\mb{u}(\mb{v})\|_\mc{L}}\right)^{1-n}.
+        \left|\textrm{det}(\log^K_\mb{u}(\mb{v})\right| =
+        \left(\frac{R\sinh(\frac{||\log^K_{\textbf{o}}(\textbf{v})||_{\mathcal{L}}}{R})}{||\log^K_{\textbf{o}}(\textbf{v})||_{\mathcal{L}}}\right)^{1-n}
     \end{equation}
     \item
-     \textbf{Fact 4: } The Jacobian determinant for parallel transport $\textnormal{PT}_{\mb{u} \rightarrow \mb{t}}(\mb{v}) = \mc{T}_\mb{u}\mbb{H}^n \rightarrow \mc{T}_t\mbb{H}^n$ is given by
+     \textbf{Fact 4: } The Jacobian determinant for parallel transport $\textnormal{PT}^K_{\mb{u} \rightarrow \mb{t}}(v) = \mc{T}_\mb{u}\mbb{H}^n_K \rightarrow \mc{T}_t\mbb{H}^n_K$ is given by
     \begin{equation}
-        \left|\textrm{det}\left(\textnormal{PT}_{\mb{u} \rightarrow \mb{t}}(\mb{v})\right)\right| = 1.
+        \left|\textrm{det}\left(\textnormal{PT}^K_{\mb{u} \rightarrow \mb{t}}(v)\right)\right| = 1.
     \end{equation}
 \end{itemize}
-Fact 2 and Fact 4 are proven in Nagano et al (2019)'s ``A Wrapped Normal Distribution on Hyperbolic Space for Gradient-Based Learning'' and Fact 3 follows from the fact that the determinant of the inverse of a function is the inverse of that function's determinant. 
-We will use similar arguments to obtain our determinant as were used in Nagano et al, and we refer the reader to Appendix A.3 in their work for background. 
+Fact 2 and Fact 4 are proven in \citet{nagano2019wrapped} ``A Wrapped Normal Distribution on Hyperbolic Space for Gradient-Based Learning'' for $K=-1$ and rederived for general $K$ in \citet{skopek2019mixed}. Fact 3 follows from the fact that the determinant of the inverse of a function is the inverse of that function's determinant. 
+We will use similar arguments to obtain our determinant as were used in \citet{nagano2019wrapped}, and we refer the reader to Appendix A.3 in their work for background. 
 
 Our main claim is as follows
 \begin{prop}
-The Jacobian determinant of the function $f$ in Equation \eqref{eq:mainflow} is:
-\begin{align*}
-  \left|\textnormal{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{x}}\right)\right| &= \Big(\frac{\sinh(||\mb{z}||_{\mathcal{L}})}{||\mb{z}||_{\mathcal{L}}}\Big)^{n-1} \times \Big(\frac{\sinh(||\mb{q}||_{\mathcal{L}})}{||\mb{q}||_{\mathcal{L}}}\Big)^{n-d-1} \times  \prod_{i=d+1}^n\sigma(s(b \odot \tilde{x}))_i \ \times \\
-    & \quad \Big(\frac{\sinh(||\log_{\textbf{o}}(\mb{q})||_{\mathcal{L}})}{||\log_{\textbf{o}}(\mb{q})||_{\mathcal{L}}}\Big)^{d+1-n} \times \Big(\frac{\sinh(||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}})}{||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n},
-\end{align*}
+The Jacobian determinant of the function $\tilde{f}^{\mathcal{W}\mathbb{H}C}$ in \eqref{wrapped_hyperboloid_coupling_eqn} is:
+\begin{multline}
+  \left|\textnormal{det}\left(\frac{\partial\mb{y}}{\partial \mb{x}}\right)\right| = \prod_{i=d+1}^n\sigma(s(\tilde{x}_1))_i \times \Big(\frac{R \sinh(\frac{||q||_{\mathcal{L}}}{R})}{||q||_{\mathcal{L}}}\Big)^{l}
+  \times \Big(\frac{R\sinh(\frac{||\log_{\textbf{o}}^K(\hat{\textbf{q}})||_{\mathcal{L}}}{R})}{||\log_{\textbf{o}}^K(q)||_{\mathcal{L}}}\Big)^{-l} \ \times  \Big(\frac{R\sinh(\frac{||\tilde{z}||_{\mathcal{L}}}{R})}{||\tilde{z}||_{\mathcal{L}}}\Big)^{n-1}
+ \  \\ \times \Big(\frac{R\sinh(\frac{||\log_{\textbf{o}}^K(\textbf{x})||_{\mathcal{L}}}{R})}{||\log_{\textbf{o}}^K(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n},
+\end{multline}
 where 
 $$
-\mb{z} =  b \odot \tilde{
-    \mb{x}} + \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big)
+z =  b \odot \tilde{
+    x} + \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big)
+$$
+the argument to the parallel transport $q$ is,
+$$
+ q = \textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x}))). 
 $$
 and
 $$
- \mb{q} = \textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex))).
+\hat{\textbf{q}} = \textnormal{exp}_{\textbf{t}}^K(q)
 $$
 \end{prop}
 \begin{proof}
 We first note that 
 \begin{equation}
-\left|\textnormal{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{x}}\right)\right| = \left|\textrm{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{z}}\right)\right| \times \left|\textrm{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right| \times \left|\textrm{det}\left(\frac{\partial \tildex}{\partial \mb{x}}\right)\right| 
+\left|\textnormal{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{x}}\right)\right| = \left|\textrm{det}\left(\frac{\partial f(\mb{x})}{\partial z}\right)\right| \times \left|\textrm{det}\left(\frac{\partial z}{\partial \tilde{x}}\right)\right| \times \left|\textrm{det}\left(\frac{\partial \tilde{x}}{\partial \mb{x}}\right)\right| 
 \end{equation}
-by the chain rule (recalling that $\tildex = \log_\mb{o}(\mb{x})$).
+by the chain rule (recalling that $\tilde{x} = \log_\mb{o}(\mb{x})$).
 Now, we have that 
 \begin{equation}
-\left|\textrm{det}\left(\frac{\partial f(\mb{x})}{\partial \mb{z}}\right)\right| = \Big(\frac{\sinh(||\mb{z}||_{\mathcal{L}})}{||\mb{z}||_{\mathcal{L}}}\Big)^{n-1}
+\left|\textrm{det}\left(\frac{\partial f(\mb{x})}{\partial z}\right)\right| =
+\Big(\frac{R\sinh(\frac{||z||_{\mathcal{L}}}{R})}{||z||_{\mathcal{L}}}\Big)^{n-1}
 \end{equation}
 by Fact 2.
 And, 
 \begin{equation}
-\left|\textrm{det}\left(\frac{\partial \tildex}{\partial \mb{x}}\right)\right| = \Big(\frac{\sinh(||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}})}{||\log_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n}
+\left|\textrm{det}\left(\frac{\partial \tilde{x}}{\partial \mb{x}}\right)\right| =
+\Big(\frac{R\sinh(\frac{||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}{R})}{||\log^K_{\textbf{o}}(\textbf{x})||_{\mathcal{L}}}\Big)^{1-n}
 \end{equation}
 by Fact 3.
 Thus, we are left with the term
 $$
-\left|\textrm{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right|.
+\left|\textrm{det}\left(\frac{\partial z}{\partial \tilde{x}}\right)\right|.
 $$
 To evaluate this term, we rely on the following Lemma:
 
 \begin{lemma}
-Let $h : \mc{T}_\mb{o}\mbb{H}^n \rightarrow \mc{T}_\mb{o}\mbb{H}^n$ be a function from the tangent space at the origin to the tangent space at the origin defined as:
+Let $h : \mc{T}_\mb{o}\mbb{H}^n_K \rightarrow \mc{T}_\mb{o}\mbb{H}^n_K$ be a function from the tangent space at the origin to the tangent space at the origin defined as:
 \begin{equation}\label{eq:g}
 h(\tilde{x}) = z = b \odot \tilde{
-    x} + \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{x})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big).
+    x} + \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big).
 \end{equation}
-Now, define a function $h^* : \mc{T}_\mb{o}\mbb{H}^{n-d} \rightarrow \mc{T}_\mb{o}\mbb{H}^{n-d}$ which acts on the subspace of $\mc{T}_\mb{o}\mbb{H}^{n-d}$ corresponding to the standard basis elements $\mb{e}_{d+1}, ..., \mb{e}_n$ as
+Now, define a function $h^* : \mc{T}_\mb{o}\mbb{H}^{n-d}_K \rightarrow \mc{T}_\mb{o}\mbb{H}^{n-d}_K$ which acts on the subspace of $\mc{T}_\mb{o}\mbb{H}^{n-d}_K$ corresponding to the standard basis elements $e_{d+1}, ..., e_n$ as
 \begin{equation}\label{eq:gstar}
-h^*(\tilde{x}_{d+1:n}) =   \log_{\mb{o}_{d+1:n}}\Big( \textnormal{exp}_{t_{d+1:n}}\big(\textnormal{PT}_{\mb{o}_{d+1:n} \to t_{d+1:n}}( \tilde{x}_{d+1:n} \odot \sigma(s))\big)\Big),
+h^*(\tilde{x}_{d+1:n}) =   \log^K_{\mb{o}_{d+1:n}}\Big( \textnormal{exp}^K_{t_{d+1:n}}\big(\textnormal{PT}^K_{\mb{o}_{d+1:n} \to t_{d+1:n}}( \tilde{x}_{d+1:n} \odot \sigma(s))\big)\Big),
 \end{equation}
-where $\tildex_{d+1:n}$ denotes the portion of the vector $\tildex$ corresponding to the standard basis elements $\mb{e}_{d+1}, ..., \mb{e}_n$ and $\mb{s}$ and $\mb{t}$ are constants (which depend on $\tildex_{2:d}$).
-In Equation \eqref{eq:gstar}, we use $\mb{o}_{d+1:n} \in \mbb{H}^{n-d}$ to denote the vector corresponding to only the dimensions $d+1, ..., n$ and similarily for $\mb{t}_{d+1:n}$.
+where $\tilde{x}_{d+1:n}$ denotes the portion of the vector $\tilde{x}$ corresponding to the standard basis elements $e_{d+1}, ..., e_n$ and $s$ and $t$ are constants (which depend on $\tilde{x}_{2:d}$).
+In \eqref{eq:gstar}, we use $\mb{o}_{d+1:n} \in \mbb{H}^{n-d}_K$ to denote the vector corresponding to only the dimensions $d+1, ..., n$ and similarily for $t_{d+1:n}$.
 Then we have that
 \begin{equation}
-    \left|\textnormal{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial g^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|.
+    \left|\textnormal{det}\left(\frac{\partial z}{\partial \tilde{x}}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial h^*(\tilde{x}_{d+1:n})}{\partial \tilde{x}_{d+1:n})}\right)\right|.
 \end{equation}
 \end{lemma}
 \begin{proof}
 First note that by design we have that 
 \begin{equation}
-    [0,0..,0] \oplus h^*(\tildex_{d+1:n}) = \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big),
+    [0,0..,0] \oplus h^*(\tilde{x}_{d+1:n}) = \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big),
 \end{equation}
 i.e., the output of $h^*$ is equal to right hand side of Equation \eqref{eq:g} after prepending/concatenating 0s to the output of $h^*$. 
 
 Now, we can evaluate 
 $$
-\left|\textrm{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right|
+\left|\textrm{det}\left(\frac{\partial z}{\partial \tilde{x}}\right)\right|
 $$
-by examining the directional derivative with respect to a set of basis elements of $\mc{T}_\mb{o}\mbb{H}^{n}$.
-Now, given that this is the tangent space at the origin, we know that the standard (i.e., Euclidean) basis elements $\mb{e}_2, ..., \mb{e}_n$ form a valid basis for this subspace, since they are orthogonal under the Lorentz normal and orthogonal to the origin itself. 
+by examining the directional derivative with respect to a set of basis elements of $\mc{T}_\mb{o}\mbb{H}^{n}_K$.
+Now, given that this is the tangent space at the origin, we know that the standard (i.e., Euclidean) basis elements $e_2, ..., e_n$ form a valid basis for this subspace, since they are orthogonal under the Lorentz normal and orthogonal to the origin itself. 
 Now, we can note first that
 \begin{equation}
-    D_{\mb{e}_i}h(\tildex) = \mb{e}_i, \forall i=2...d.
+    D_{e_i}h(\tilde{x}) = e_i, \forall i=2...d.
 \end{equation}
 In other words, the directional derivative for the first $d$ basis elements is the simply the basis elements themselves. This can be verified by taking the definition of the directional derivative:
 \begin{equation}
-     D_{\mb{e}_i}h(\tildex)  = \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tildex + \epsilon\mb{e}_i)
+     D_{e_i}h(\tilde{x})  = \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tilde{x} + \epsilon e_i)
 \end{equation}
 and noting that the 
 $$
-\log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big)
+\log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big)
 $$
-term must equal zero since $(1-b)\odot \mb{e}_i = \mb{0}, \forall i = 2, ..., d$ by design. 
-Now, for the basis elements $\mb{e}_i$ with $i>d$ we have that
+term must equal zero since $(1-b)\odot e_i = 0, \forall i = 2, ..., d$ by design. 
+Now, for the basis elements $e_i$ with $i>d$ we have that
 \begin{equation}
-     D_{\mb{e}_i}h(\tildex) \perp \mb{e}_j, \forall i=d+1, ..., n, j=2...,d.
+     D_{e_i}h(\tilde{x}) \perp e_j, \forall i=d+1, ..., n, j=2...,d.
 \end{equation}
 This holds because 
 \begin{align}
-D_{\mb{e}_i}h(\tildex)  &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tildex + \epsilon\mb{e}_i) \\
- &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}    \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big) 
+D_{e_i}h(\tilde{x})  &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}h(\tilde{x} + \epsilon e_i) \\
+ &= \frac{\partial}{\partial \epsilon}\Big|_{\epsilon = 0}    \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big) 
 \end{align}
-since $b \odot \mb{e}_i = \mb{0}, \forall i = d+1, ..., n$ by design and because
+since $b \odot e_i = 0, \forall i = d+1, ..., n$ by design and because
 \begin{equation}
-   \log_{\textbf{o}}\Big( \textnormal{exp}_{t(b \odot \tilde{\mb{x}})}\big(\textnormal{PT}_{\textbf{o}\to t(b \odot \tilde{\mb{x}}) }((1-b) \odot \tilde{\mb{x}} \odot \sigma(s(b \odot \tildex)))\big)\Big) \perp \mb{e}_j, \forall \tildex \in \mc{T}_\mb{o}\mbb{H}^n, \forall  j=2...,d.
+   \log^K_{\textbf{o}}\Big( \textnormal{exp}^K_{t(b \odot \tilde{x})}\big(\textnormal{PT}^K_{\textbf{o}\to t(b \odot \tilde{x}) }((1-b) \odot \tilde{x} \odot \sigma(s(b \odot \tilde{x})))\big)\Big) \perp e_j, \forall \tilde{x} \in \mc{T}_\mb{o}\mbb{H}^n_K, \forall  j=2...,d.
 \end{equation}
 due to the $(1-b)$ term inside the parallel transport and by our design of the function $t$. 
-Together, these facts give that the Jacobian matrix for $h$ (under the basis $\mb{e}_2, ..., \mb{e}_n$) has the following block form:
+Together, these facts give that the Jacobian matrix for $h$ (under the basis $e_2, ..., e_n$) has the following block form:
 \begin{equation}
-   \left(\frac{\partial \mb{z}}{\partial \tildex}\right) = \left[\begin{BMAT}{cc}{cc}
-    \mb{I} & \mb{0} \\
-    \mb{A} & \frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}
+   \left(\frac{\partial z}{\partial \tilde{x}}\right) = \left[\begin{BMAT}{cc}{cc}
+    I & \mb{0} \\
+    A & \frac{\partial h^*(\tilde{x}_{d+1:n})}{\partial \tilde{x}_{d+1:n})}
     \end{BMAT}\right]
 \end{equation}
 and by the properties of determinants of block matrices we have that
 \begin{equation}
-    \left|\textnormal{det}\left(\frac{\partial \mb{z}}{\partial \tildex}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|
+    \left|\textnormal{det}\left(\frac{\partial z}{\partial \tilde{x}}\right)\right| =    \left|\textnormal{det}\left(\frac{\partial h^*(\tilde{x}_{d+1:n})}{\partial \tilde{x}_{d+1:n})}\right)\right|
 \end{equation}
 \end{proof}
 Given Lemma 1, all that remains is to evaluate 
 \begin{equation}
-    \left|\textnormal{det}\left(\frac{\partial h^*(\tildex_{d+1:n})}{\partial \tildex_{d+1:n})}\right)\right|.
+    \left|\textnormal{det}\left(\frac{\partial h^*(\tilde{x}_{d+1:n})}{\partial \tilde{x}_{d+1:n})}\right)\right|.
 \end{equation}
 This can again be done by the chain rule, where we use Facts 2-4 to compute the determinant for exponential map, logarithmic map, and parallel transport.
 Finally, the Jacobian determinant for the term
 \begin{equation}
-    \tildex \odot \sigma(s(b \odot \tildex)))
+    \tilde{x} \odot \sigma(s(b \odot \tilde{x})))
 \end{equation}
-can easily be computed as $\prod_{i=d+1}^n\sigma(s(b \odot \tilde{x}))_i$ since the standard Euclidean basis is a basis for the tangent space at the origin as shown in Appendix \ref{Euclidean_RealNVP_appendix}.
+can easily be computed as $\prod_{j=d+1}^n\sigma(s(b \odot \tilde{x}))_j$ since the standard Euclidean basis is a basis for the tangent space at the origin as shown in Appendix \ref{Euclidean_RealNVP_appendix}.
 \end{proof}
 
 \cut{\input{decoders.tex}}
 
 \section{Model Architectures and Hyperparameters}
 \label{model_arch_and_hyperparams}
+In this section we provide more details regarding model architectures and hyperparameters for each experiment in \ref{experiments}. For all hyperbolic models we used a curvature warmup for $10$ epochs which aids in numerical stability \citet{skopek2019mixed}. Specifically, we set $R=11$ and linearly decrease to $R=2$ every epoch after which it is treated as a learnable parameter. 
+
+\xhdr{Structured Density Estimation}
+For all VAE models our encoder consists of three linear layers. The first layer maps the input to a hidden space and the other two layers are used to paramaterize the mean and variance of the prior distribution and map samples to the latent space. The decoder for these models is simply a small MLP that consists of two linear layers that map the latent space to the hidden space and then finally back to the observation space. One important distinction between Euclidean models and hyperbolic models is that we use aFor BDP the hidden dim size is $200$ while for MNIST we use $600$ and the latent space is varied as shown in Tables \ref{table:bdp_table} and \ref{table:mnist_table}. All flow models used in this setting consist of $2$ linear layers each of size $128$. Between each layer in either the encoder and decoder we use the LeakyRelu \cite{xu2015empirical} activation function while tanh is used between flow layers. Lastly, we train all models for $80$ epochs with the Adam optimizer with default setting \cite{kingma2014adam}.
+
+\xhdr{Graph Reconstruction}
+For graph reconstruction task we use the VGAE model as a base \cite{kipf2016variational} which also uses three linear layers of size $16$ as the encoder in the VAE model. The decoder however is parameter less and is simply an inner product either in Euclidean space or in $\mathcal{T}_{\textbf{o}}\mathbb{H}^n_K$ for Hyperbolic models. As the reconstruction objective contains $N^2$ terms we rescale the $\mathbb{D}_{KL}$ penalty by a factor of $1/N$ such that each of the losses are on the same scale. This can be understood as a $\beta-$VAE like model where $\beta = 1/N$. Like the structured density estimation setting all our flow models consist of two linear layers of size $128$ with a tanh nonlinearity. Finally, we train the each model for $3000$ epochs using the Adam optimizer \cite{kingma2014adam}. 
+
+\xhdr{Graph Generation}
+For the graph generation task we adapt the training setup from \cite{liu2019graph} in that we pretrain a graph autoencoder for $100$ epochs to generate node latents. Empirically, we found that using a VGAE model for hyperbolic space worked better than a vanilla a GAE model. Furthermore, instead of using simple linear layers for the encoder we use GAT \cite{velivckovic2017graph} layer of size $32$, which has access to the adjacency matrix. We use LeakyReLU for our encoder non-linearity while tanh is used for all flow models. Unlike GRevNets that use node features sampled from $\mathcal{N}(0,I)$ we find that it is necessary to provide the actual adjacency matrix otherwise training did not succeed. Our decoder defines edge probabilities as $p(A_{u,v}=1|z_u,z_v) = \sigma((-d_{\mathcal{G}}(u,v) - b)/\tau)$ where $b$ and $\tau$ are learned edge specific bias and temperature parameters implemented as one GAT layer followed by a linear layer both of size $32$. Thus both the encoder and decoder are both parameterized and optimized using the Adam optimizer \cite{kingma2014adam}. 
+
 
 \section{Dataset Issues}
 \label{dataset_issues}

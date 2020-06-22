@@ -9,14 +9,14 @@ In recent years, the power of these SVI methods has been further improved by emp
 %Recent work on {\em normalizing flows} alleviates this modeling bottleneck.
 Normalizing flows involve learning a series of invertible transformations, which are used to transform a sample from a simple base distribution to a sample from a richer distribution \cite{rezende2015variational}. 
 Indeed, flow-based posteriors enjoy many advantages such as efficient sampling, exact likelihood estimation, and low-variance gradient estimates when the base distribution is reparametrizable, making them ideal for modern machine learning problems.
-There have been numerous advances in normalizing flow construction in Euclidean spaces from RealNVP \cite{dinh2016density}, NAF \cite{huang2018neural}, and FFJORD \cite{grathwohl2018ffjord} to name a few.
+There have been numerous advances in normalizing flow construction in Euclidean spaces from RealNVP \cite{dinh2016density}, B-NAF \cite{huang2018neural,de2019block}, and FFJORD \cite{grathwohl2018ffjord} to name a few.
 
 \begin{figure}
     \centering
     \vspace{-10pt}
     \includegraphics[width=0.9\linewidth]{explanatory_fig.pdf}
     \vspace{-10pt}
-    \caption{The shortest path between a given pair of node embeddings in $\mathbb{R}^2$ and hyperbolic space as modelled by the Lorentz model $\mathbb{H}^2_K$ and Poincar\'e disk $\mathbb{P}^2_K$. Unlike Euclidean space, distances between points grow exponentially as you move away from the origin in hyperbolic space, and thus the shortest paths between points in hyperbolic space go through the origin, giving rise to hierarchical, tree-like structure. }
+    \caption{The shortest path between a given pair of node embeddings in $\mathbb{R}^2$ and hyperbolic space as modelled by the Lorentz model $\mathbb{H}^2_K$ and Poincar\'e disk $\mathbb{P}^2_K$. Unlike Euclidean space, distances between points grow exponentially as you move away from the origin in hyperbolic space, and thus the shortest paths between points in hyperbolic space go through a common parent node, ---i.e. the origin, giving rise to hierarchical and tree-like structure. }
     \vspace{-10pt}
     \label{fig:explanatory_fig_1}
 \end{figure}

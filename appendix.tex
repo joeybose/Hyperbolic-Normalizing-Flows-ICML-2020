@@ -308,7 +308,21 @@ For graph reconstruction task we use the VGAE model as a base \cite{kipf2016vari
 \xhdr{Graph Generation}
 For the graph generation task we adapt the training setup from \cite{liu2019graph} in that we pretrain a graph autoencoder for $100$ epochs to generate node latents. Empirically, we found that using a VGAE model for hyperbolic space worked better than a vanilla a GAE model. Furthermore, instead of using simple linear layers for the encoder we use GAT \cite{velivckovic2017graph} layer of size $32$, which has access to the adjacency matrix. We use LeakyReLU for our encoder non-linearity while tanh is used for all flow models. Unlike GRevNets that use node features sampled from $\mathcal{N}(0,I)$ we find that it is necessary to provide the actual adjacency matrix otherwise training did not succeed. Our decoder defines edge probabilities as $p(A_{u,v}=1|z_u,z_v) = \sigma((-d_{\mathcal{G}}(u,v) - b)/\tau)$ where $b$ and $\tau$ are learned edge specific bias and temperature parameters implemented as one GAT layer followed by a linear layer both of size $32$. Thus both the encoder and decoder are both parameterized and optimized using the Adam optimizer \cite{kingma2014adam}. 
 
+%\clearpage
+\section{Additional Density Estimation Results}
+\label{additional_results}
+We now provide additional qualitative results for density estimation in hyperbolic space as visualized in the Poincar\'e disk. For these visualizations we take a density initially defined on Euclidean space and project them to the hyperboloid using the logarithmic map at the origin. We then sample $500$ points from this new density and fit both $\mathcal{T}C$ and $\mathcal{W}\mathbb{H}C$ based flows. The results for the learned densities are shown below in Figure \ref{fig:additional_density_estimation}.
 
+
+\begin{figure}[ht]
+     \centering
+     \includegraphics[width=0.95\linewidth]{additional_examples_hyperbolic_density.pdf}
+     \caption{\textbf{Top:} Wrapped Gaussian with $\mu = [-1.0,1.0]$ and $\sigma = [1.0, 0.25]^T$. \textbf{Mid:} Checkerboard pattern projected to hyperbolic space. \textbf{Bot:} 2D Spiral projected to hyperbolic space}
+     \label{fig:additional_density_estimation}
+ \end{figure}
+ 
+ 
+ 
 \section{Dataset Issues}
 \label{dataset_issues}
 Upon inspecting the code and data kindly provided by \citet{mathieu2019continuous} we uncovered some issues that led to us omitting their CS-PhD and Phylogenetics datasets in our comparisons. 

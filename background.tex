@@ -1,7 +1,7 @@
 \section{Background on Hyperbolic Geometry}\label{sec:background}
 
 Within the Riemannian geometry framework, hyperbolic spaces are manifolds with constant negative curvature $K$ and are of particular interest for embedding hierarchical structures. There are multiple models of $n$-dimensional hyperbolic space, such as the hyperboloid $\mathbb{H}_K^n$, also known as the Lorentz model, or the Poincar\'e ball $\mathbb{P}_K^n$. %\footnote{Also called Poincar\'e disk when $n=2$}. 
-Figure \ref{fig:explanatory_fig_1} illustrates some key properties of $\mathbb{H}_K^2$ and $\mathbb{P}_K^2$, highlighting how distances grow exponentially as you move away from the origin and how the shortest paths between distant points tend to go through the origin, giving rise to a hierarchical or tree-like structure. %how a two-dimensional hyperbolic space can perfectly embed a tree with arbitrarily low distortion \cite{sarkar2011low}%, which is not possible in Euclidean spaces as it does not grow exponentially like the former leaving little room to place nodes. 
+Figure \ref{fig:explanatory_fig_1} illustrates some key properties of $\mathbb{H}_K^2$ and $\mathbb{P}_K^2$, highlighting how distances grow exponentially as you move away from the origin and how the shortest paths between distant points tend to go through a common parent ---i.e. the origin, giving rise to a hierarchical or tree-like structure. %how a two-dimensional hyperbolic space can perfectly embed a tree with arbitrarily low distortion \cite{sarkar2011low}%, which is not possible in Euclidean spaces as it does not grow exponentially like the former leaving little room to place nodes. 
 %Crucially, this implies that the shortest distance between two given leaves, denoted by the red line, respects the hierarchical structure and must go pass through the origin (yellow node) in hyperbolic space but not in Euclidean space. 
 In the next section, we briefly review the Lorentz model of hyperbolic geometry. We are not assuming a background in Riemannian geometry, though Appendix \ref{riemannian_geometry_appendix} and \citet{Ratcliffe94} are of use to the interested reader. Henceforth, for notational clarity, we use boldface font to denote points on the hyperboloid manifold.
 
@@ -42,7 +42,7 @@ Equipped with this, the induced distance between two points $(\mb{x},\mb{y})$ in
 The tangent space to the hyperboloid at the point $\textbf{p} \in \mathbb{H}_K^n$ can also be described as an embedded subspace of $\mathbb{R}^{1,n}$.  
 It is given by the set of points satisfying the orthogonality relation with respect to the Minkowski inner product \footnote{It is also equivalently known as the Lorentz inner product.},
 \begin{equation}
-    \mathcal{T}_{\textbf{p}}\mathbb{H}^n_K := \{u: \langle u, \textbf{p} \rangle_{\mathcal{L}} = 0 \}.
+   \mathcal{T}_{\textbf{p}}\mathbb{H}^{n}_K := \{ u: \langle u, \textbf{p} \rangle_{\mathcal{L}} = 0\}
 \end{equation}
 Of special interest are vectors in the tangent space at the origin of $\mathbb{H}^{n}_K$ whose norm under the Minkowski inner product is equivalent to the conventional Euclidean norm. That is $v \in \mathcal{T}_{\textbf{o}}\mathbb{H}^{n}_K$ is a vector such that $v_0 = 0$ and $||\textbf{v}||_{\mathcal{L}} := \sqrt{\langle \textbf{v}, \textbf{v}
 \rangle_{\mathcal{L}}} = ||\textbf{v}||_2$.  Thus \emph{at the origin} the
